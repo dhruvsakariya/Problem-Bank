@@ -1,2 +1,4 @@
 React Redux Typescript
 Add Tailwind Css
+Redux Toolkit Query
+React Router Dom
