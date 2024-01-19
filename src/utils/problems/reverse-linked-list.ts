@@ -85,7 +85,7 @@ export const reverseLinkedList: Problem = {
 	`,
   examples: [
     {
-      id: 0,
+      id: 1,
       inputText: "head = [1,2,3,4,5]",
       outputText: "[5,4,3,2,1]",
       img: example1,
@@ -97,12 +97,12 @@ export const reverseLinkedList: Problem = {
       img: example2,
     },
     {
-      id: 1,
+      id: 3,
       inputText: "head = [1,2,3]",
       outputText: "[3,2,1]",
     },
     {
-      id: 2,
+      id: 4,
       inputText: "head = [1]",
       outputText: "[1]",
     },

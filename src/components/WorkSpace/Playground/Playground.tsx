@@ -12,7 +12,8 @@ import type { Problem } from "../../../utils/types/Problem";
 // import { auth, firestore } from "@/firebase/firebase";
 import { toast } from "react-toastify";
 import { problems } from "../../../utils/problems";
-import { validParentheses } from "../../../utils/problems/valid-parentheses";
+import { useAppSelector } from "../../../app/hooks";
+// import { validParentheses } from "../../../utils/problems/valid-parentheses";
 // import { useRouter } from "next/router";
 
 interface PlaygroundProps {
@@ -32,7 +33,13 @@ const Playground: React.FC<PlaygroundProps> = ({
   setSuccess,
   setSolved,
 }) => {
-  let problem = validParentheses;
+  // let problem = validParentheses;
+
+  const problemIdx = useAppSelector((state) => state.contest.problemIdx);
+  const problem = useAppSelector(
+    (state) => state.contest.questions[problemIdx]
+  ).value;
+
   const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0);
   let [userCode, setUserCode] = useState<string>(problem.starterCode);
 

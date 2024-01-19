@@ -1,16 +1,20 @@
-import React from "react";
-
-import { validParentheses } from "../../../utils/problems/valid-parentheses";
+// import { validParentheses } from "../../../utils/problems/valid-parentheses";
 import ProblemTab from "../ProblemTab/ProblemTab";
+import { useAppSelector } from "../../../app/hooks";
 
 const ProblemDescription = () => {
-  let currentProblem = validParentheses;
+  // let problem = validParentheses;
+
+  const problemIdx = useAppSelector((state) => state.contest.problemIdx);
+  const problem = useAppSelector(
+    (state) => state.contest.questions[problemIdx]
+  ).value;
 
   let problemDifficultyClass = "";
 
-  if (currentProblem.difficulty === "Easy") {
+  if (problem.difficulty === "Easy") {
     problemDifficultyClass = " bg-olive text-olive ";
-  } else if (currentProblem.difficulty === "Medium") {
+  } else if (problem.difficulty === "Medium") {
     problemDifficultyClass = " bg-dark-yellow text-dark-yellow ";
   } else {
     problemDifficultyClass = "bg-dark-pink text-dark-pink";
@@ -28,15 +32,15 @@ const ProblemDescription = () => {
           <div className="w-full">
             <div className="flex space-x-4">
               <div className="flex-1 mr-2 text-lg text-white font-medium">
-                {currentProblem?.title}
+                {problem?.title}
               </div>
             </div>
-            {currentProblem && (
+            {problem && (
               <div className="flex items-center mt-3">
                 <div
                   className={`${problemDifficultyClass} inline-block rounded-[21px] bg-opacity-[.15] px-2.5 py-1 text-xs font-medium capitalize `}
                 >
-                  {currentProblem.difficulty}
+                  {problem.difficulty}
                 </div>
                 {/* {(solved || _solved) && (
                   <div className="rounded p-[3px] ml-4 text-lg transition-colors duration-200 text-green-s text-dark-green-s">
@@ -50,14 +54,14 @@ const ProblemDescription = () => {
             <div className="text-white text-sm">
               <div
                 dangerouslySetInnerHTML={{
-                  __html: currentProblem.problemStatement,
+                  __html: problem.problemStatement,
                 }}
               />
             </div>
 
             {/* Examples */}
             <div className="mt-4">
-              {currentProblem.examples.map((example, index) => (
+              {problem.examples.map((example, index) => (
                 <div key={example.id}>
                   <p className="font-medium text-white ">
                     Example {index + 1}:{" "}
@@ -89,7 +93,7 @@ const ProblemDescription = () => {
               <ul className="text-white ml-5 list-disc ">
                 <div
                   dangerouslySetInnerHTML={{
-                    __html: currentProblem.constraints,
+                    __html: problem.constraints,
                   }}
                 />
               </ul>
