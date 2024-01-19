@@ -23,6 +23,8 @@ module.exports = {
         "olive": "rgb(0, 184, 163)",
         "dark-green-s": "rgb(44 187 93)",
         "dark-blue-s": "rgb(10 132 255)",
+        "nobel": "rgb(180, 180, 180)",
+        "white-ink": "rgb(242, 242, 242)",
       }
     },
   },

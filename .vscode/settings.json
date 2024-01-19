@@ -1,0 +1,16 @@
+{
+  "cSpell.words": ["chartjs"],
+  "tailwindCSS.classAttributes": [
+    "class",
+    "className",
+    "ngClass",
+    ".*Style*",
+    ".*Styles*",
+    ".*classes*",
+    ".*Classes*",
+    ".*class*",
+    ".*Class*",
+    ".*className*",
+    ".*ClassName*"
+  ]
+}

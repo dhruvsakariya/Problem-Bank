@@ -1,0 +1,19 @@
+.react-tabs__tab-list {
+    @apply bg-dark-layer-2 flex items-center;
+    height: 45px;
+    margin: 0;
+    border-bottom: unset
+}
+
+.react-tabs__tab {
+    @apply text-nobel border-none mx-1 select-none;
+}
+
+.react-tabs__tab--selected {
+    border-radius: 4px;
+    @apply text-white-ink bg-white/[0.08];
+}
+
+.react-tabs__tab:focus:after {
+    display: none;
+}
