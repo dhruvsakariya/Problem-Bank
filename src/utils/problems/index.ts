@@ -16,4 +16,20 @@ export const problems: ProblemMap = {
   "jump-game": jumpGame,
   "search-a-2d-matrix": search2DMatrix,
   "valid-parentheses": validParentheses,
+  // 5 more...
 };
+
+export function getRandomProblemsArray(
+  obj: ProblemMap,
+  count: number
+): Array<{ key: string; value: Problem }> {
+  // Shuffle keys
+  const shuffledKeys = Object.keys(obj).sort(() => 0.5 - Math.random());
+
+  // Map to array of key-value pairs and slice
+  const randomProblemsArray = shuffledKeys
+    .slice(0, count)
+    .map((key) => ({ key: key, value: obj[key] }));
+
+  return randomProblemsArray;
+}
