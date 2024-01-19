@@ -1,5 +1,5 @@
 .react-tabs__tab-list {
-    @apply bg-dark-layer-2 flex items-center;
+    @apply flex items-center;
     height: 45px;
     margin: 0;
     border-bottom: unset

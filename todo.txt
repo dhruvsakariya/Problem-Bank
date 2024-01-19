@@ -7,3 +7,4 @@ define 10 problems
 render problems
 add code editor for ( javascript , cpp , java )
 add test cases split with min 5 test cases
+stop reloading page

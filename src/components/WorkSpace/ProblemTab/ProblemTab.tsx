@@ -19,12 +19,13 @@ const ProblemTab = () => {
       onSelect={(index) => {
         // dispatch(setTabsIdx({ tabId, index }));
       }}
+      className={"overflow-x-scroll no-scrollbar bg-dark-layer-2"}
     >
       <TabList>
         {tabs.map((tab, index) => {
           return (
             <Tab key={index}>
-              <span>{tab.name}</span>
+              <span className="whitespace-nowrap">{tab.name}</span>
             </Tab>
           );
         })}
