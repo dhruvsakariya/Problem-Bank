@@ -6,6 +6,7 @@ import Confetti from "react-confetti";
 import Playground from "./Playground/Playground";
 
 const WorkSpace = () => {
+
   const { width, height } = useWindowSize();
   const [success, setSuccess] = useState(false);
   const [solved, setSolved] = useState(false);

@@ -1,5 +1,8 @@
 {
-  "cSpell.words": ["chartjs"],
+  "cSpell.words": [
+    "chartjs",
+    "reduxjs"
+  ],
   "tailwindCSS.classAttributes": [
     "class",
     "className",

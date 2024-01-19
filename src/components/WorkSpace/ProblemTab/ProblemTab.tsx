@@ -3,6 +3,8 @@ import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 
 import "../../../styles/react-tabs.css";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { setProblemIdx } from "../../../features/contest/contestSlice";
 
 const ProblemTab = () => {
   const tabs = [
@@ -13,11 +15,15 @@ const ProblemTab = () => {
     { name: "Problem 5" },
   ];
 
+  const dispatch = useAppDispatch();
+
+  const problemIdx = useAppSelector((state) => state.contest.problemIdx);
+
   return (
     <Tabs
-      // selectedIndex={0}
+      selectedIndex={problemIdx}
       onSelect={(index) => {
-        // dispatch(setTabsIdx({ tabId, index }));
+        dispatch(setProblemIdx(index));
       }}
       className={"overflow-x-scroll no-scrollbar bg-dark-layer-2"}
     >

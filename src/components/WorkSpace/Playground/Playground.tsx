@@ -4,6 +4,8 @@ import Split from "react-split";
 import CodeMirror from "@uiw/react-codemirror";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
 import { javascript } from "@codemirror/lang-javascript";
+import { cpp } from "@codemirror/lang-cpp";
+import { java } from "@codemirror/lang-java";
 import EditorFooter from "./EditorFooter";
 import type { Problem } from "../../../utils/types/Problem";
 // import { useAuthState } from "react-firebase-hooks/auth";
@@ -113,7 +115,7 @@ const Playground: React.FC<PlaygroundProps> = ({
             value={userCode}
             theme={vscodeDark}
             onChange={onChange}
-            extensions={[javascript()]}
+            extensions={[javascript(), cpp(), java()]}
             style={{ fontSize: settings.fontSize }}
           />
         </div>
@@ -162,6 +164,7 @@ const Playground: React.FC<PlaygroundProps> = ({
           </div>
         </div>
       </Split>
+
       <EditorFooter handleSubmit={handleSubmit} />
     </div>
   );
