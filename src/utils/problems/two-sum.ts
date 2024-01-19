@@ -5,37 +5,37 @@ const starterCodeTwoSum = `function twoSum(nums,target){
 };`;
 
 // checks if the user has the correct code
-const handlerTwoSum = (fn: any) => {
-  // fn is the callback that user's code is passed into
-  try {
-    const nums = [
-      [2, 7, 11, 15],
-      [3, 2, 4],
-      [3, 3],
-      [1, 3, 2, 7, 4, 5],
-      [-10, -1, -18, -19],
-    ];
+// const handlerTwoSum = (fn: any) => {
+//   // fn is the callback that user's code is passed into
+//   try {
+//     const nums = [
+//       [2, 7, 11, 15],
+//       [3, 2, 4],
+//       [3, 3],
+//       [1, 3, 2, 7, 4, 5],
+//       [-10, -1, -18, -19],
+//     ];
 
-    const targets = [9, 6, 6, 12, -19];
-    const answers = [
-      [0, 1],
-      [1, 2],
-      [0, 1],
-      [3, 5],
-      [1, 2],
-    ];
+//     const targets = [9, 6, 6, 12, -19];
+//     const answers = [
+//       [0, 1],
+//       [1, 2],
+//       [0, 1],
+//       [3, 5],
+//       [1, 2],
+//     ];
 
-    // loop all tests to check if the user's code is correct
-    for (let i = 0; i < nums.length; i++) {
-      // result is the output of the user's function and answer is the expected output
-      const result = fn(nums[i], targets[i]);
-    }
-    return true;
-  } catch (error: any) {
-    console.log("twoSum handler function error");
-    throw new Error(error);
-  }
-};
+//     // loop all tests to check if the user's code is correct
+//     for (let i = 0; i < nums.length; i++) {
+//       // result is the output of the user's function and answer is the expected output
+//       const result = fn(nums[i], targets[i]);
+//     }
+//     return true;
+//   } catch (error: any) {
+//     console.log("twoSum handler function error");
+//     throw new Error(error);
+//   }
+// };
 
 export const twoSum: Problem = {
   id: "two-sum",
@@ -91,7 +91,7 @@ export const twoSum: Problem = {
 <li class='mt-2 text-sm'>
 <strong>Only one valid answer exists.</strong>
 </li>`,
-  handlerFunction: handlerTwoSum,
+  // handlerFunction: handlerTwoSum,
   starterCode: starterCodeTwoSum,
   order: 1,
   starterFunctionName: "function twoSum(",

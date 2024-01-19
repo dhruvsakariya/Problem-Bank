@@ -1,10 +1,10 @@
 import React from "react";
 
-import { twoSum } from "../../../utils/problems/two-sum";
+import { validParentheses } from "../../../utils/problems/valid-parentheses";
 import ProblemTab from "../ProblemTab/ProblemTab";
 
 const ProblemDescription = () => {
-  let currentProblem = twoSum;
+  let currentProblem = validParentheses;
 
   let problemDifficultyClass = "";
 

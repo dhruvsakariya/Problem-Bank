@@ -12,7 +12,7 @@ import type { Problem } from "../../../utils/types/Problem";
 // import { auth, firestore } from "@/firebase/firebase";
 import { toast } from "react-toastify";
 import { problems } from "../../../utils/problems";
-import { twoSum } from "../../../utils/problems/two-sum";
+import { validParentheses } from "../../../utils/problems/valid-parentheses";
 // import { useRouter } from "next/router";
 
 interface PlaygroundProps {
@@ -32,7 +32,7 @@ const Playground: React.FC<PlaygroundProps> = ({
   setSuccess,
   setSolved,
 }) => {
-  let problem = twoSum;
+  let problem = validParentheses;
   const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0);
   let [userCode, setUserCode] = useState<string>(problem.starterCode);
 
@@ -46,7 +46,7 @@ const Playground: React.FC<PlaygroundProps> = ({
     try {
       userCode = userCode.slice(userCode.indexOf(problem.starterFunctionName));
       const cb = new Function(`return ${userCode}`)();
-      const handler = problems["pid as string"].handlerFunction;
+      const handler = (cb: any) => true;
 
       if (typeof handler === "function") {
         const success = handler(cb);
@@ -119,7 +119,7 @@ const Playground: React.FC<PlaygroundProps> = ({
             style={{ fontSize: settings.fontSize }}
           />
         </div>
-        <div className="w-full px-5 overflow-auto">
+        <div className="w-full px-5 overflow-auto pb-[52px]">
           {/* testcase heading */}
           <div className="flex h-10 items-center space-x-6">
             <div className="relative flex h-full flex-col justify-center cursor-pointer">
