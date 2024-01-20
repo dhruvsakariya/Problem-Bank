@@ -32,7 +32,7 @@ const TopBar: FC<Props> = () => {
             </div>
             <div className="flex flex-start bg-dark-gray-6/75 overflow-hidden w-full font-sans rounded-full text-xs font-medium h-2 ">
               <div
-                className="flex justify-center items-center h-full overflow-hidden break-all rounded-full bg-green-800 text-white"
+                className="flex justify-center items-center h-full overflow-hidden break-all rounded-full bg-dark-green-s text-white"
                 style={{ width: "20%" }}
               ></div>
             </div>

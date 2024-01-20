@@ -1,13 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import type { Problem } from "../../utils/types/Problem";
+import { Language, Questions } from "./contest";
 
 export interface ContestState {
   problemIdx: number;
-  questions: Array<{
-    key: string;
-    value: Problem;
-  }>;
+  questions: Questions;
 }
 
 const initialState: ContestState = {
@@ -22,21 +20,25 @@ export const contestSlice = createSlice({
     setProblemIdx: (state, action: PayloadAction<number>) => {
       state.problemIdx = action.payload;
     },
-    setQuestions: (
-      state,
-      action: PayloadAction<
-        Array<{
-          key: string;
-          value: Problem;
-        }>
-      >
-    ) => {
+    setQuestions: (state, action: PayloadAction<Questions>) => {
       state.questions = action.payload;
+    },
+
+    setProblemLanguage: (
+      state,
+      action: PayloadAction<{ lang: Language; idx?: number }>
+    ) => {
+      const lang = action.payload.lang;
+
+      const idx = action.payload.idx || state.problemIdx;
+
+      state.questions[idx].language = lang;
     },
   },
 });
 
-export const { setProblemIdx, setQuestions } = contestSlice.actions;
+export const { setProblemIdx, setQuestions, setProblemLanguage } =
+  contestSlice.actions;
 
 export const contestState = (state: RootState) => state.contest;
 

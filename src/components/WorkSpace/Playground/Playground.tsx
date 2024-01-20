@@ -11,8 +11,8 @@ import type { Problem } from "../../../utils/types/Problem";
 // import { useAuthState } from "react-firebase-hooks/auth";
 // import { auth, firestore } from "@/firebase/firebase";
 import { toast } from "react-toastify";
-import { problems } from "../../../utils/problems";
 import { useAppSelector } from "../../../app/hooks";
+import { Language } from "../../../features/contest/contest";
 // import { validParentheses } from "../../../utils/problems/valid-parentheses";
 // import { useRouter } from "next/router";
 
@@ -39,6 +39,9 @@ const Playground: React.FC<PlaygroundProps> = ({
   const problem = useAppSelector(
     (state) => state.contest.questions[problemIdx]
   ).value;
+  const problemLanguage = useAppSelector(
+    (state) => state.contest.questions[problemIdx]
+  ).language;
 
   const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0);
   let [userCode, setUserCode] = useState<string>(problem.starterCode);
@@ -107,6 +110,19 @@ const Playground: React.FC<PlaygroundProps> = ({
     // localStorage.setItem(`code-${pid}`, JSON.stringify(value));
   };
 
+  const getLanguageExtension = (language: Language) => {
+    switch (language) {
+      case "javascript":
+        return javascript();
+      case "cpp":
+        return cpp();
+      case "java":
+        return java();
+      default:
+        return javascript();
+    }
+  };
+
   return (
     <div className="flex flex-col bg-dark-layer-1 relative overflow-x-hidden">
       <PreferenceNav settings={settings} setSettings={setSettings} />
@@ -114,15 +130,15 @@ const Playground: React.FC<PlaygroundProps> = ({
       <Split
         className="h-[calc(100vh-94px)]"
         direction="vertical"
-        sizes={[60, 40]}
-        minSize={60}
+        sizes={[51, 49]}
+        minSize={52}
       >
         <div className="w-full overflow-auto">
           <CodeMirror
             value={userCode}
             theme={vscodeDark}
             onChange={onChange}
-            extensions={[javascript(), cpp(), java()]}
+            extensions={[getLanguageExtension(problemLanguage)]}
             style={{ fontSize: settings.fontSize }}
           />
         </div>

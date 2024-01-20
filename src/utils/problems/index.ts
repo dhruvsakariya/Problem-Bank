@@ -5,6 +5,7 @@ import { search2DMatrix } from "./search-a-2d-matrix";
 import { jumpGame } from "./jump-game";
 import { reverseLinkedList } from "./reverse-linked-list";
 import { validParentheses } from "./valid-parentheses";
+import { Questions } from "../../features/contest/contest";
 
 interface ProblemMap {
   [key: string]: Problem;
@@ -22,14 +23,17 @@ export const problems: ProblemMap = {
 export function getRandomProblemsArray(
   obj: ProblemMap,
   count: number
-): Array<{ key: string; value: Problem }> {
+): Questions {
   // Shuffle keys
   const shuffledKeys = Object.keys(obj).sort(() => 0.5 - Math.random());
 
   // Map to array of key-value pairs and slice
   const randomProblemsArray = shuffledKeys
     .slice(0, count)
-    .map((key) => ({ key: key, value: obj[key] }));
+    .map(
+      (key) =>
+        ({ key: key, value: obj[key], language: "javascript" } as Questions[0])
+    );
 
   return randomProblemsArray;
 }

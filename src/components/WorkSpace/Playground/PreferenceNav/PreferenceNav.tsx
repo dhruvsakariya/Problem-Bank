@@ -1,11 +1,19 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC } from "react";
 import {
   AiOutlineFullscreen,
   AiOutlineFullscreenExit,
   AiOutlineSetting,
 } from "react-icons/ai";
+import { IoIosArrowDown } from "react-icons/io";
+
+import { Popover } from "react-tiny-popover";
 import { ISettings } from "../Playground";
 import SettingsModal from "../../../../components/Modal/SettingsModal";
+import { useAppDispatch, useAppSelector } from "../../../../app/hooks";
+
+import styles from "./PreferenceNav.module.css";
+import { Language } from "../../../../features/contest/contest";
+import { setProblemLanguage } from "../../../../features/contest/contestSlice";
 
 type PreferenceNavProps = {
   settings: ISettings;
@@ -16,7 +24,13 @@ const PreferenceNav: React.FC<PreferenceNavProps> = ({
   setSettings,
   settings,
 }) => {
+  const [showLanguageSelect, setShowLanguageSelect] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
+
+  const problemIdx = useAppSelector((state) => state.contest.problemIdx);
+  const problem = useAppSelector(
+    (state) => state.contest.questions[problemIdx]
+  );
 
   const handleFullScreen = () => {
     if (isFullScreen) {
@@ -46,18 +60,28 @@ const PreferenceNav: React.FC<PreferenceNavProps> = ({
 
   return (
     <div className="flex items-center justify-between bg-dark-layer-2 h-11 w-full ">
-      <div className="flex items-center text-white">
-        <button className="flex cursor-pointer items-center rounded focus:outline-none bg-dark-fill-3 text-dark-label-2 hover:bg-dark-fill-2  px-2 py-1.5 font-medium">
-          <div className="flex items-center px-1">
-            <div className="text-xs text-label-2 dark:text-dark-label-2">
-              JavaScript
-            </div>
-          </div>
-        </button>
-      </div>
+      <Popover
+        isOpen={showLanguageSelect}
+        positions={"bottom"} // preferred positions by priority
+        align="start"
+        content={
+          <LanguagesOption setShowLanguageSelect={setShowLanguageSelect} />
+        }
+        padding={8}
+        onClickOutside={() => setShowLanguageSelect(false)}
+        clickOutsideCapture
+      >
+        <div
+          className="text-white flex items-center cursor-pointer  rounded focus:outline-none bg-dark-fill-3  hover:bg-dark-fill-2  px-2 py-1.5 font-medium text-xs text-dark-label-2"
+          onClick={() => setShowLanguageSelect((prev) => !prev)}
+        >
+          {problem.language} <IoIosArrowDown className="ml-1" />
+        </div>
+      </Popover>
 
       <div className="flex items-center m-2">
         <button
+          type="button"
           className="preferenceBtn group"
           onClick={() =>
             setSettings({ ...settings, settingsModalIsOpen: true })
@@ -87,3 +111,32 @@ const PreferenceNav: React.FC<PreferenceNavProps> = ({
   );
 };
 export default PreferenceNav;
+
+interface LanguagesOptionProps {
+  setShowLanguageSelect: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const LanguagesOption: FC<LanguagesOptionProps> = ({
+  setShowLanguageSelect,
+}) => {
+  const dispatch = useAppDispatch();
+
+  const handleClick = (lang: Language) => {
+    dispatch(setProblemLanguage({ lang }));
+    setShowLanguageSelect(false);
+  };
+
+  return (
+    <ul className="text-white bg-dark-fill-4 p-1 rounded">
+      <li className={styles.language} onClick={() => handleClick("javascript")}>
+        javascript
+      </li>
+      <li className={styles.language} onClick={() => handleClick("cpp")}>
+        cpp
+      </li>
+      <li className={styles.language} onClick={() => handleClick("java")}>
+        java
+      </li>
+    </ul>
+  );
+};

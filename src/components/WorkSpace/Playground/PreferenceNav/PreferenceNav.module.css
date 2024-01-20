@@ -1,0 +1,11 @@
+.language {
+    @apply cursor-pointer py-1 px-2 text-sm rounded;
+}
+
+.language:hover {
+    @apply bg-white/[0.08];
+}
+
+.language:focus {
+    @apply bg-white/[1];
+}
