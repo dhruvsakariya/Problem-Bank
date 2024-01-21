@@ -57,7 +57,25 @@ export const validParentheses: Problem = {
   constraints: `<li class='mt-2'><code>1 <= s.length <= 10<sup>4</sup></code></li>
 <li class='mt-2 '><code>s</code> consists of parentheses only <code class="text-md">'()[]{}'</code>.</li>`,
   // handlerFunction: validParenthesesHandler,
-  starterCode: starterCodeValidParenthesesJS,
+  javascriptStarterCode: `/**
+  * @param {number[]} nums
+  * @param {number} target
+  * @return {number[]}
+  */
+ var twoSum = function(nums, target) {
+     
+ };`,
+  cppStarterCode: `class Solution {
+  public:
+      vector<int> twoSum(vector<int>& nums, int target) {
+          
+      }
+  };`,
+  javaStarterCode: `class Solution {
+  public int[] twoSum(int[] nums, int target) {
+      
+  }
+}`,
   starterFunctionName: "function validParentheses(",
   order: 4,
 };

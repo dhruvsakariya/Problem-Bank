@@ -11,8 +11,9 @@ import type { Problem } from "../../../utils/types/Problem";
 // import { useAuthState } from "react-firebase-hooks/auth";
 // import { auth, firestore } from "@/firebase/firebase";
 import { toast } from "react-toastify";
-import { useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { Language } from "../../../features/contest/contest";
+import { setUserCode } from "../../../features/contest/contestSlice";
 // import { validParentheses } from "../../../utils/problems/valid-parentheses";
 // import { useRouter } from "next/router";
 
@@ -35,6 +36,8 @@ const Playground: React.FC<PlaygroundProps> = ({
 }) => {
   // let problem = validParentheses;
 
+  const dispatch = useAppDispatch();
+
   const problemIdx = useAppSelector((state) => state.contest.problemIdx);
   const problem = useAppSelector(
     (state) => state.contest.questions[problemIdx]
@@ -42,9 +45,12 @@ const Playground: React.FC<PlaygroundProps> = ({
   const problemLanguage = useAppSelector(
     (state) => state.contest.questions[problemIdx]
   ).language;
+  const userCode = useAppSelector(
+    (state) => state.contest.questions[problemIdx].code[problemLanguage]
+  );
 
   const [activeTestCaseId, setActiveTestCaseId] = useState<number>(0);
-  let [userCode, setUserCode] = useState<string>(problem.starterCode);
+  // let [userCode, setUserCode] = useState<string>(problem.starterCode);
 
   const [settings, setSettings] = useState<ISettings>({
     fontSize: "16px",
@@ -54,28 +60,26 @@ const Playground: React.FC<PlaygroundProps> = ({
 
   const handleSubmit = async () => {
     try {
-      userCode = userCode.slice(userCode.indexOf(problem.starterFunctionName));
-      const cb = new Function(`return ${userCode}`)();
-      const handler = (cb: any) => true;
-
-      if (typeof handler === "function") {
-        const success = handler(cb);
-        if (success) {
-          toast.success("Congrats! All tests passed!", {
-            position: "top-center",
-            autoClose: 3000,
-            theme: "dark",
-          });
-          setSuccess(true);
-          setTimeout(() => {
-            setSuccess(false);
-          }, 4000);
-
-          setSolved(true);
-        }
-      }
+      // userCode = userCode.slice(userCode.indexOf(problem.starterFunctionName));
+      // const cb = new Function(`return ${userCode}`)();
+      // const handler = (cb: any) => true;
+      // if (typeof handler === "function") {
+      //   const success = handler(cb);
+      //   if (success) {
+      //     toast.success("Congrats! All tests passed!", {
+      //       position: "top-center",
+      //       autoClose: 3000,
+      //       theme: "dark",
+      //     });
+      //     setSuccess(true);
+      //     setTimeout(() => {
+      //       setSuccess(false);
+      //     }, 4000);
+      //     setSolved(true);
+      //   }
+      // }
     } catch (error: any) {
-      console.log(error.message);
+      // console.log(error.message);
       if (
         error.message.startsWith(
           "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:"
@@ -106,7 +110,7 @@ const Playground: React.FC<PlaygroundProps> = ({
   //   }, [pid, user, problem.starterCode]);
 
   const onChange = (value: string) => {
-    setUserCode(value);
+    dispatch(setUserCode({ code: value }));
     // localStorage.setItem(`code-${pid}`, JSON.stringify(value));
   };
 

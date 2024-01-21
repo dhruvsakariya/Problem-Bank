@@ -34,10 +34,24 @@ export const contestSlice = createSlice({
 
       state.questions[idx].language = lang;
     },
+
+    
+    setUserCode: (
+      state,
+      action: PayloadAction<{  code:string;lang?: Language; idx?: number }>
+    ) => {
+      const code = action.payload.code;
+      
+      const idx = action.payload.idx || state.problemIdx;
+      const lang = action.payload.lang || state.questions[idx].language;
+
+      state.questions[idx].code[lang] = code;
+    },
+    
   },
 });
 
-export const { setProblemIdx, setQuestions, setProblemLanguage } =
+export const { setProblemIdx, setQuestions, setProblemLanguage ,setUserCode } =
   contestSlice.actions;
 
 export const contestState = (state: RootState) => state.contest;

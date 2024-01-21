@@ -71,7 +71,25 @@ export const jumpGame: Problem = {
   ],
   constraints: `<li class='mt-2'><code>1 <= nums.length <= 10^4</code></li>
     <li class='mt-2'><code>0 <= nums[i] <= 10^5</code></li>`,
-  starterCode: starterCodeJumpGameJS,
+    javascriptStarterCode: `/**
+    * @param {number[]} nums
+    * @param {number} target
+    * @return {number[]}
+    */
+   var twoSum = function(nums, target) {
+       
+   };`,
+    cppStarterCode: `class Solution {
+    public:
+        vector<int> twoSum(vector<int>& nums, int target) {
+            
+        }
+    };`,
+    javaStarterCode: `class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        
+    }
+  }`,
   // handlerFunction: jumpGameHandler,
   starterFunctionName: "function canJump(",
   order: 3,

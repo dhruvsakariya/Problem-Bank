@@ -91,7 +91,25 @@ export const search2DMatrix: Problem = {
   <li class='mt-2'><code>1 <= m, n <= 100</code></li>
   <li class='mt-2'><code>-10<sup>4</sup> <= matrix[i][j], target <= 10<sup>4</sup></code></li>
   `,
-  starterCode: starterCodeSearch2DMatrixJS,
+  javascriptStarterCode: `/**
+  * @param {number[]} nums
+  * @param {number} target
+  * @return {number[]}
+  */
+ var twoSum = function(nums, target) {
+     
+ };`,
+  cppStarterCode: `class Solution {
+  public:
+      vector<int> twoSum(vector<int>& nums, int target) {
+          
+      }
+  };`,
+  javaStarterCode: `class Solution {
+  public int[] twoSum(int[] nums, int target) {
+      
+  }
+}`,
   // handlerFunction: search2DMatrixHandler,
   starterFunctionName: "function searchMatrix",
   order: 5,

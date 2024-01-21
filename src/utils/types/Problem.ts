@@ -17,7 +17,9 @@ export type Problem = {
   examples: Example[];
   constraints: string;
   order: number;
-  starterCode: string;
+  javascriptStarterCode: string;
+  cppStarterCode:string;
+  javaStarterCode:string;
   // handlerFunction: ((fn: any) => boolean) | string;
   starterFunctionName: string;
 };

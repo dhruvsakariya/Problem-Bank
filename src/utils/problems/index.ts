@@ -28,12 +28,19 @@ export function getRandomProblemsArray(
   const shuffledKeys = Object.keys(obj).sort(() => 0.5 - Math.random());
 
   // Map to array of key-value pairs and slice
-  const randomProblemsArray = shuffledKeys
-    .slice(0, count)
-    .map(
-      (key) =>
-        ({ key: key, value: obj[key], language: "javascript" } as Questions[0])
-    );
+  const randomProblemsArray = shuffledKeys.slice(0, count).map(
+    (key) =>
+      ({
+        key: key,
+        value: obj[key],
+        language: "javascript",
+        code: {
+          javascript: obj[key].javascriptStarterCode,
+          cpp: obj[key].cppStarterCode,
+          java: obj[key].javaStarterCode,
+        },
+      } as Questions[0])
+  );
 
   return randomProblemsArray;
 }
