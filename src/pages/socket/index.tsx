@@ -8,10 +8,13 @@ const WebSocketComponent: React.FC = () => {
   const wsNextId = useRef<number>(0);
 
   useEffect(() => {
-    const stompClient = over(new SockJS("http://localhost:3001"), {
-      heartbeat: false,
-      debug: true,
-    });
+    const stompClient = over(
+      new SockJS(`${process.env.REACT_APP_API_URL}stomp`),
+      {
+        heartbeat: false,
+        debug: true,
+      }
+    );
 
     const onWsConnection = () => {
       console.log("connection succeeded");

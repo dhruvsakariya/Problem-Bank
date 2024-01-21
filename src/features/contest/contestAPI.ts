@@ -4,9 +4,10 @@ export const contestApi = createApi({
   reducerPath: "contestApi",
   baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API_URL }),
   endpoints: ({ query }) => ({
-    getAuthToken: query<string, string>({
+    getAuthToken: query<string, void>({
       query: () => ({
         url: "auth-token",
+        responseHandler: "content-type",
         method: "post",
         body: {
           clientId: process.env.REACT_APP_JDOODLE_CLIENT_ID,
@@ -17,4 +18,4 @@ export const contestApi = createApi({
   }),
 });
 
-export const { useGetAuthTokenQuery } = contestApi;
+export const { useGetAuthTokenQuery, useLazyGetAuthTokenQuery } = contestApi;

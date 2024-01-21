@@ -4,11 +4,13 @@ import WorkSpace from "../../components/WorkSpace/WorkSpace";
 import { useAppDispatch } from "../../app/hooks";
 import { setQuestions } from "../../features/contest/contestSlice";
 import { getRandomProblemsArray } from "../../utils/problems";
+import { useLazyGetAuthTokenQuery } from "../../features/contest/contestAPI";
 
 const Problem = () => {
   const dispatch = useAppDispatch();
 
   const [loading, setLoading] = useState(true);
+  const [fetchAuthToken, { isFetching }] = useLazyGetAuthTokenQuery();
 
   useEffect(() => {
     (async () => {
@@ -19,6 +21,14 @@ const Problem = () => {
       dispatch(setQuestions(questions));
       setLoading(false);
     })();
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      const response = await fetchAuthToken();
+      console.log(response);
+    })();
+
   }, []);
 
   return (
