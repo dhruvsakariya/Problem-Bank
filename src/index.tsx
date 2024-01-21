@@ -6,6 +6,8 @@ import "./index.css";
 import { RouterProvider } from "react-router-dom";
 import { createBrowserRouter } from "react-router-dom";
 import Problem from "./pages/problems/problem";
+import Chat from "./pages/chat";
+import SocketComponent from "./pages/socket";
 
 const container = document.getElementById("root")!;
 const root = createRoot(container);
@@ -15,6 +17,11 @@ export const router = createBrowserRouter([
     path: "/",
     element: <Problem />,
   },
+  {
+    path: "/chat",
+    element: <Chat />,
+  },
+  { path: "/socket", element: <SocketComponent /> },
 ]);
 
 root.render(
