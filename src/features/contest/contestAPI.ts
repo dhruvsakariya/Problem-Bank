@@ -7,7 +7,8 @@ export const contestApi = createApi({
     getAuthToken: query<string, string>({
       query: () => ({
         url: "auth-token",
-        params: {
+        method: "post",
+        body: {
           clientId: process.env.REACT_APP_JDOODLE_CLIENT_ID,
           clientSecret: process.env.REACT_APP_JDOODLE_SECRET,
         },
