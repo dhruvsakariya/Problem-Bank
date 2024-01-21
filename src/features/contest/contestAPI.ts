@@ -1,17 +1,19 @@
-// Need to use the React-specific entry point to allow generating React hooks
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// Define a service using a base URL and expected endpoints
 export const contestApi = createApi({
   reducerPath: "contestApi",
-  baseQuery: fetchBaseQuery({ baseUrl: "https://pokeapi.co/api/v2/" }),
-  endpoints: (builder) => ({
-    getPokemonByName: builder.query<string, string>({
-      query: (name) => `pokemon/${name}`,
+  baseQuery: fetchBaseQuery({ baseUrl: process.env.REACT_APP_API_URL }),
+  endpoints: ({ query }) => ({
+    getAuthToken: query<string, string>({
+      query: () => ({
+        url: "auth-token",
+        params: {
+          clientId: process.env.REACT_APP_JDOODLE_CLIENT_ID,
+          clientSecret: process.env.REACT_APP_JDOODLE_SECRET,
+        },
+      }),
     }),
   }),
 });
 
-// Export hooks for usage in function components, which are
-// auto-generated based on the defined endpoints
-export const { useGetPokemonByNameQuery } = contestApi;
+export const { useGetAuthTokenQuery } = contestApi;
