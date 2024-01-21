@@ -92,23 +92,23 @@ export const search2DMatrix: Problem = {
   <li class='mt-2'><code>-10<sup>4</sup> <= matrix[i][j], target <= 10<sup>4</sup></code></li>
   `,
   javascriptStarterCode: `/**
-  * @param {number[]} nums
-  * @param {number} target
-  * @return {number[]}
-  */
- var twoSum = function(nums, target) {
-     
- };`,
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix = function(matrix, target) {
+       
+};`,
   cppStarterCode: `class Solution {
   public:
-      vector<int> twoSum(vector<int>& nums, int target) {
+      bool searchMatrix(vector<vector<int>>& matrix, int target) {
           
-      }
-  };`,
+    }
+};`,
   javaStarterCode: `class Solution {
-  public int[] twoSum(int[] nums, int target) {
-      
-  }
+    public boolean searchMatrix(int[][] matrix, int target) {
+        
+    }
 }`,
   // handlerFunction: search2DMatrixHandler,
   starterFunctionName: "function searchMatrix",

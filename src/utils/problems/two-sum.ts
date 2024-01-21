@@ -94,23 +94,23 @@ export const twoSum: Problem = {
   // handlerFunction: handlerTwoSum,
   // starterCode: starterCodeTwoSum,
   javascriptStarterCode: `/**
-  * @param {number[]} nums
-  * @param {number} target
-  * @return {number[]}
-  */
- var twoSum = function(nums, target) {
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+var twoSum = function(nums, target) {
      
- };`,
+};`,
   cppStarterCode: `class Solution {
-  public:
-      vector<int> twoSum(vector<int>& nums, int target) {
-          
-      }
-  };`,
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        
+    }
+};`,
   javaStarterCode: `class Solution {
-  public int[] twoSum(int[] nums, int target) {
+    public int[] twoSum(int[] nums, int target) {
       
-  }
+    }
 }`,
   order: 1,
   starterFunctionName: "function twoSum(",

@@ -15,8 +15,8 @@ export const problems: ProblemMap = {
   "two-sum": twoSum,
   "reverse-linked-list": reverseLinkedList,
   "jump-game": jumpGame,
-  "search-a-2d-matrix": search2DMatrix,
   "valid-parentheses": validParentheses,
+  "search-a-2d-matrix": search2DMatrix,
   // 5 more...
 };
 
@@ -25,7 +25,8 @@ export function getRandomProblemsArray(
   count: number
 ): Questions {
   // Shuffle keys
-  const shuffledKeys = Object.keys(obj).sort(() => 0.5 - Math.random());
+  // const shuffledKeys = Object.keys(obj).sort(() => 0.5 - Math.random());
+  const shuffledKeys = Object.keys(obj);
 
   // Map to array of key-value pairs and slice
   const randomProblemsArray = shuffledKeys.slice(0, count).map(

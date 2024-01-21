@@ -58,23 +58,22 @@ export const validParentheses: Problem = {
 <li class='mt-2 '><code>s</code> consists of parentheses only <code class="text-md">'()[]{}'</code>.</li>`,
   // handlerFunction: validParenthesesHandler,
   javascriptStarterCode: `/**
-  * @param {number[]} nums
-  * @param {number} target
-  * @return {number[]}
-  */
- var twoSum = function(nums, target) {
-     
- };`,
+* @param {string} s
+* @return {boolean}
+*/
+var isValid = function(s) {
+
+};`,
   cppStarterCode: `class Solution {
   public:
-      vector<int> twoSum(vector<int>& nums, int target) {
-          
-      }
-  };`,
+    bool isValid(string s) {
+        
+    }
+};`,
   javaStarterCode: `class Solution {
-  public int[] twoSum(int[] nums, int target) {
-      
-  }
+    public boolean isValid(String s) {
+        
+    }
 }`,
   starterFunctionName: "function validParentheses(",
   order: 4,

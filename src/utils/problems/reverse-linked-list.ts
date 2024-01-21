@@ -116,23 +116,49 @@ export const reverseLinkedList: Problem = {
   constraints: `<li class='mt-2'>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
 <li class='mt-2'><code>-5000 <= Node.val <= 5000</code></li>`,
 javascriptStarterCode: `/**
-* @param {number[]} nums
-* @param {number} target
-* @return {number[]}
+* Definition for singly-linked list.
+* function ListNode(val, next) {
+*     this.val = (val===undefined ? 0 : val)
+*     this.next = (next===undefined ? null : next)
+* }
 */
-var twoSum = function(nums, target) {
+/**
+* @param {ListNode} head
+* @return {ListNode}
+*/
+var reverseList = function(head) {
    
 };`,
-cppStarterCode: `class Solution {
+cppStarterCode: `/**
+* Definition for singly-linked list.
+* struct ListNode {
+*     int val;
+*     ListNode *next;
+*     ListNode() : val(0), next(nullptr) {}
+*     ListNode(int x) : val(x), next(nullptr) {}
+*     ListNode(int x, ListNode *next) : val(x), next(next) {}
+* };
+*/
+class Solution {
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        
-    }
+   ListNode* reverseList(ListNode* head) {
+       
+   }
 };`,
-javaStarterCode: `class Solution {
-public int[] twoSum(int[] nums, int target) {
-    
-}
+javaStarterCode: `/**
+* Definition for singly-linked list.
+* public class ListNode {
+*     int val;
+*     ListNode next;
+*     ListNode() {}
+*     ListNode(int val) { this.val = val; }
+*     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+* }
+*/
+class Solution {
+   public ListNode reverseList(ListNode head) {
+       
+   }
 }`,
   // handlerFunction: reverseLinkedListHandler,
   starterFunctionName: "function reverseLinkedList(",
