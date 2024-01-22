@@ -2,81 +2,6 @@ import type { Problem } from "../types/Problem";
 import example1 from "./images/reverseLL.jpg";
 import example2 from "./images/rev1ex2.jpg";
 
-// JS doesn't have a built in LinkedList class, so we'll create one
-// class LinkedList {
-//   value: number;
-//   next: LinkedList | null;
-
-//   constructor(value: number) {
-//     this.value = value;
-//     this.next = null;
-//   }
-
-//   reverse(): LinkedList {
-//     let current: LinkedList | null = this;
-//     let prev: LinkedList | null = null;
-//     while (current !== null) {
-//       const next = current.next as LinkedList;
-//       current.next = prev;
-//       prev = current;
-//       current = next;
-//     }
-//     return prev!;
-//   }
-// }
-
-// export const reverseLinkedListHandler = (fn: any) => {
-// 	try {
-// 		const tests = [[1, 2, 3, 4, 5], [5, 4, 3, 2, 1], [1, 2, 3], [1]];
-// 		const answers = [[5, 4, 3, 2, 1], [1, 2, 3, 4, 5], [3, 2, 1], [1]];
-// 		for (let i = 0; i < tests.length; i++) {
-// 			const list = createLinkedList(tests[i]);
-// 			const result = fn(list);
-// 			assert.deepEqual(getListValues(result), answers[i]);
-// 		}
-// 		return true;
-// 	} catch (error: any) {
-// 		console.log("Error from reverseLinkedListHandler: ", error);
-// 		throw new Error(error);
-// 	}
-// };
-
-// it creates a linked list from an array
-// function createLinkedList(values: number[]): LinkedList {
-//   const head = new LinkedList(values[0]);
-//   let current = head;
-//   for (let i = 1; i < values.length; i++) {
-//     const node = new LinkedList(values[i]);
-//     current.next = node;
-//     current = node;
-//   }
-//   return head;
-// }
-
-// it returns an array of values from a linked list
-// function getListValues(head: LinkedList): number[] {
-//   const values = [];
-//   let current: LinkedList | null = head;
-//   while (current !== null) {
-//     values.push(current.value);
-//     current = current.next;
-//   }
-//   return values;
-// }
-
-const starterCodeReverseLinkedListJS = `
-/**
- * Definition for singly-linked list.
- * function ListNode(val, next) {
- *     this.val = (val===undefined ? 0 : val)
- *     this.next = (next===undefined ? null : next)
- * }
- */
-// Do not edit function name
-function reverseLinkedList(head) {
-  // Write your code here
-};`;
-
 export const reverseLinkedList: Problem = {
   id: "reverse-linked-list",
   title: "2. Reverse Linked List",
@@ -115,7 +40,7 @@ export const reverseLinkedList: Problem = {
 
   constraints: `<li class='mt-2'>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
 <li class='mt-2'><code>-5000 <= Node.val <= 5000</code></li>`,
-python3StarterCode: `/**
+  python3StarterCode: `/**
 * Definition for singly-linked list.
 * function ListNode(val, next) {
 *     this.val = (val===undefined ? 0 : val)
@@ -129,22 +54,61 @@ python3StarterCode: `/**
 var reverseList = function(head) {
    
 };`,
-  cppStarterCode: `/**
-* Definition for singly-linked list.
-* struct ListNode {
-*     int val;
-*     ListNode *next;
-*     ListNode() : val(0), next(nullptr) {}
-*     ListNode(int x) : val(x), next(nullptr) {}
-*     ListNode(int x, ListNode *next) : val(x), next(next) {}
-* };
-*/
+  cppStarterCode: `#include <bits/stdc++.h>
+using namespace std;
+
+struct ListNode {
+    int val;
+    ListNode* next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode* next) : val(x), next(next) {}
+};
+
 class Solution {
 public:
-   ListNode* reverseList(ListNode* head) {
-       
-   }
-};`,
+    ListNode* reverseList(ListNode* head) {
+        
+    }
+};
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n;
+        cin >> n;
+
+        // Input for the linked list
+        ListNode* head = nullptr;
+        ListNode* tail = nullptr;
+        for (int i = 0; i < n; ++i) {
+            int val;
+            cin >> val;
+            ListNode* newNode = new ListNode(val);
+            if (!head) {
+                head = tail = newNode;
+            } else {
+                tail->next = newNode;
+                tail = newNode;
+            }
+        }
+
+        Solution obj;
+        ListNode* result = obj.reverseList(head);
+        ListNode* current = result; // Keep a separate pointer to traverse the reversed list
+
+        // Output the reversed linked list without size information
+        while (current) {
+            cout << current->val << " ";
+            current = current->next;
+        }
+        cout << endl;
+    }
+
+    return 0;
+}`,
   javaStarterCode: `/**
 * Definition for singly-linked list.
 * public class ListNode {
@@ -160,9 +124,23 @@ class Solution {
        
    }
 }`,
-  // handlerFunction: reverseLinkedListHandler,
-  // starterFunctionName: "function reverseLinkedList(",
-  testCases: "",
-  expectedOutput: "",
+  testCases: `5
+5
+1 2 3 4 5
+2
+1 2
+3
+1 2 3
+1
+1
+7
+1 2 6 3 4 5 6
+`,
+  expectedOutput: `5 4 3 2 1 
+2 1 
+3 2 1 
+1 
+6 5 4 3 6 2 1 
+`,
   order: 2,
 };

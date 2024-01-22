@@ -3,6 +3,7 @@ import { BsChevronUp } from "react-icons/bs";
 import { SocketContext } from "../../../pages/problems/problem";
 import { useAppSelector } from "../../../app/hooks";
 import { Message } from "webstomp-client";
+import { toast } from "react-toastify";
 
 type EditorFooterProps = {
   handleSubmit: () => void;
@@ -32,35 +33,41 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {
   }
 
   useEffect(() => {
-    if (socketConnected && socketClient.current) {
-      socketClient.current.subscribe(
-        "/user/queue/execute-i",
-        (message: Message) => {
-          const statusCode = parseInt(message.headers.statusCode, 10);
-          if (statusCode === 201) {
-            socketClient.current.send(
-              "/app/execute-ws-api-token",
-              problem.testCases,
-              {
-                message_type: "input",
-              }
-            );
-          } else if (statusCode === 200) {
-            if (message.body === problem.expectedOutput) {
-              console.log("%c✅✅✅ Passed", "color: #00d26a;");
+    if (!socketConnected || !socketClient.current) return;
+
+    const { id } = socketClient.current.subscribe(
+      "/user/queue/execute-i",
+      (message: Message) => {
+        const statusCode = parseInt(message.headers.statusCode, 10);
+        if (statusCode === 201) {
+          socketClient.current.send(
+            "/app/execute-ws-api-token",
+            problem.testCases,
+            {
+              message_type: "input",
             }
+          );
+        } else if (statusCode === 200) {
+          if (message.body === problem.expectedOutput) {
+            toast.success("Congrats! All tests passed!", {
+              position: "top-center",
+              autoClose: 3000,
+              theme: "dark",
+            });
+            console.log("%c✅✅✅ Passed", "color: #00d26a;");
           }
         }
-      );
-    }
+      }
+    );
 
     // Cleanup: Unsubscribe and close the WebSocket when the component unmounts
     return () => {
       if (socketClient.current) {
-        socketClient.current.unsubscribe("/user/queue/execute-i");
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        socketClient.current.unsubscribe(id);
       }
     };
-  }, [socketConnected]); // Empty dependency array ensures this effect runs only once, when the component mounts
+  }, [socketConnected, problemIdx]); // Empty dependency array ensures this effect runs only once, when the component mounts
 
   const handleRun = () => {
     const data = JSON.stringify({

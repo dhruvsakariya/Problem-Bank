@@ -14,4 +14,10 @@ run and check the code
 
 stop reloading page
 collect user name & Start Contest Modal
-delete counter
+delete counter slice
+problem index back to 0
+
+
+// Kashish
+Id : e7cd9135485a88b1ec215d1f30d42997
+Secret : 65822e47d2ff5c3be51097484a9d9e876b5b6c57e50be601b522a891800862a7
