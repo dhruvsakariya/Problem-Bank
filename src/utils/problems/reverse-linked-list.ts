@@ -55,13 +55,16 @@ class Solution:
 
 def main():
     t = int(input())
-
-    solution = Solution()
+    input_data = []
 
     for _ in range(t):
         n = int(input())
         values = list(map(int, input().split()))
+        input_data.append((n, values))
 
+    solution = Solution()
+
+    for n, values in input_data:
         head = None
         tail = None
 
