@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { BsChevronUp } from "react-icons/bs";
 import { SocketContext } from "../../../pages/problems/problem";
 import { useAppSelector } from "../../../app/hooks";
@@ -22,7 +22,45 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {
     (state) => state.contest.questions[problemIdx].code[problemLanguage]
   );
 
+  const socketConnected = useAppSelector(
+    (state) => state.contest.socketConnected
+  );
+
   const authToken = useAppSelector((state) => state.contest.authToken);
+
+  if (socketClient && socketClient.current && socketClient.current.connected) {
+  }
+
+  useEffect(() => {
+    if (socketConnected && socketClient.current) {
+      socketClient.current.subscribe(
+        "/user/queue/execute-i",
+        (message: Message) => {
+          const statusCode = parseInt(message.headers.statusCode, 10);
+          if (statusCode === 201) {
+            socketClient.current.send(
+              "/app/execute-ws-api-token",
+              problem.testCases,
+              {
+                message_type: "input",
+              }
+            );
+          } else if (statusCode === 200) {
+            if (message.body === problem.expectedOutput) {
+              console.log("%c✅✅✅ Passed", "color: #00d26a;");
+            }
+          }
+        }
+      );
+    }
+
+    // Cleanup: Unsubscribe and close the WebSocket when the component unmounts
+    return () => {
+      if (socketClient.current) {
+        socketClient.current.unsubscribe("/user/queue/execute-i");
+      }
+    };
+  }, [socketConnected]); // Empty dependency array ensures this effect runs only once, when the component mounts
 
   const handleRun = () => {
     const data = JSON.stringify({
@@ -30,26 +68,6 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {
       language: problemLanguage,
       versionIndex: 4,
     });
-
-    socketClient.current.subscribe(
-      "/user/queue/execute-i",
-      (message: Message) => {
-        const statusCode = parseInt(message.headers.statusCode, 10);
-        if (statusCode === 201) {
-          socketClient.current.send(
-            "/app/execute-ws-api-token",
-            problem.testCases,
-            {
-              message_type: "input",
-            }
-          );
-        } else if (statusCode === 200) {
-          if (message.body === problem.expectedOutput) {
-            console.log("%c✅✅✅ Passed", "color: #00d26a;");
-          }
-        }
-      }
-    );
 
     socketClient.current.send("/app/execute-ws-api-token", data, {
       message_type: "execute",

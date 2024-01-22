@@ -1,15 +1,18 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
+import type { Problem } from "../../utils/types/Problem";
 import { Language, Questions } from "./contest";
 
 export interface ContestState {
   authToken: string;
+  socketConnected: boolean;
   problemIdx: number;
   questions: Questions;
 }
 
 const initialState: ContestState = {
   authToken: "",
+  socketConnected: false,
   problemIdx: 0,
   questions: [],
 };
@@ -22,6 +25,9 @@ export const contestSlice = createSlice({
       state.authToken = action.payload;
     },
 
+    setSocketConnected: (state, action: PayloadAction<boolean>) => {
+      state.socketConnected = action.payload;
+    },
 
     setProblemIdx: (state, action: PayloadAction<number>) => {
       state.problemIdx = action.payload;
@@ -58,6 +64,7 @@ export const contestSlice = createSlice({
 export const {
   setProblemIdx,
   setQuestions,
+  setSocketConnected,
   setProblemLanguage,
   setUserCode,
   setAuthToken,

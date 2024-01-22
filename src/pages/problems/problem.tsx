@@ -1,5 +1,4 @@
 import React, {
-  Fragment,
   PropsWithChildren,
   createContext,
   useEffect,
@@ -8,18 +7,16 @@ import React, {
 } from "react";
 import TopBar from "../../components/TopBar/TopBar";
 import WorkSpace from "../../components/WorkSpace/WorkSpace";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { useAppDispatch } from "../../app/hooks";
 import {
   setAuthToken,
   setQuestions,
+  setSocketConnected,
 } from "../../features/contest/contestSlice";
 import { getRandomProblemsArray } from "../../utils/problems";
-import {
-  useLazyGetAuthTokenQuery,
-  useGetAuthTokenQuery,
-} from "../../features/contest/contestAPI";
+import { useGetAuthTokenQuery } from "../../features/contest/contestAPI";
 import SockJS from "sockjs-client";
-import { Client, over, Message } from "webstomp-client";
+import { Client, over } from "webstomp-client";
 import { useDispatch } from "react-redux";
 
 const Problem = () => {
@@ -70,7 +67,7 @@ export const SocketContext = createContext<React.RefObject<Client> | null>(
 const SocketProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const dispatch = useDispatch();
   const ref = useRef<Client | null>(null);
-  const wsNextId = useRef<number>(0);
+  // const wsNextId = useRef<number>(0);
 
   useEffect(() => {
     const stompClient = over(
@@ -81,10 +78,13 @@ const SocketProvider: React.FC<PropsWithChildren> = ({ children }) => {
       }
     );
 
-    const onWsConnection = () => {};
+    const onWsConnection = () => {
+      dispatch(setSocketConnected(stompClient.connected));
+    };
 
     const onWsConnectionFailed = (e: any) => {
       console.log("connection failed", e);
+      dispatch(setSocketConnected(stompClient.connected));
     };
 
     stompClient.connect({}, onWsConnection, onWsConnectionFailed);
@@ -93,6 +93,7 @@ const SocketProvider: React.FC<PropsWithChildren> = ({ children }) => {
     return () => {
       if (stompClient.connected) {
         stompClient.disconnect();
+        dispatch(setSocketConnected(stompClient.connected));
       }
     };
   }, []);
