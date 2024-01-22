@@ -71,27 +71,114 @@ export const jumpGame: Problem = {
   ],
   constraints: `<li class='mt-2'><code>1 <= nums.length <= 10^4</code></li>
     <li class='mt-2'><code>0 <= nums[i] <= 10^5</code></li>`,
-    python3StarterCode: `/**
-* @param {number[]} nums
-* @return {boolean}
-*/
-var canJump = function(nums) {
-       
-};`,
-  cppStarterCode: `class Solution {
+  python3StarterCode: `from typing import List
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+
+
+def main():
+    t = int(input())  # Number of test cases
+    obj = Solution()
+
+    output = []
+
+    for _ in range(t):
+        n = int(input())  # Size of the array
+        nums = list(map(int, input().split()))  # Elements of the array
+
+        result = obj.canJump(nums)
+        output.append(str(result).lower())  # Convert to lowercase
+
+    print("\\n".join(output))  # Print all results on separate lines
+
+if __name__ == "__main__":
+    main()
+`,
+  cppStarterCode: `#include <iostream>
+#include <vector>
+using namespace std;
+
+class Solution {
 public:
     bool canJump(vector<int>& nums) {
-        
+
     }
-};`,
-  javaStarterCode: `class Solution {
-  public boolean canJump(int[] nums) {
-      
-  }
+};
+
+int main() {
+
+    int t;
+    cin >> t;
+
+    while (t--) {
+        int n;
+        cin >> n;
+
+        vector<int> nums(n);
+        for (int i = 0; i < n; ++i) {
+            cin >> nums[i];
+        }
+
+        Solution obj;
+        bool result = obj.canJump(nums);
+
+        cout << (result ? "true" : "false") << endl;
+    }
+
+    return 0;
+}`,
+  javaStarterCode: `import java.util.Scanner;
+
+public class Solution {
+    public boolean canJump(int[] nums) {
+
+    }
+
+    public static void main(String[] args) {
+      Scanner scanner = new Scanner(System.in);
+
+      int t = scanner.nextInt(); // Number of test cases
+      Solution obj = new Solution();
+
+      StringBuilder output = new StringBuilder();
+
+      for (int i = 0; i < t; ++i) {
+          int n = scanner.nextInt(); // Size of the array
+          int[] nums = new int[n];
+
+          for (int j = 0; j < n; j++) {
+              nums[j] = scanner.nextInt(); // Elements of the array
+          }
+
+          boolean result = obj.canJump(nums);
+          output.append(result).append("\\n"); // Append newline after each result
+      }
+
+      System.out.println(output.toString().trim()); // Print all results together with a newline at the end
+      scanner.close();
+    }
 }`,
   // handlerFunction: jumpGameHandler,
   // starterFunctionName: "function canJump(",
-  testCases: "",
-  expectedOutput: "",
+  testCases: `5
+5
+2 3 1 1 4
+5
+3 2 1 0 4
+4
+2 5 0 0
+7
+1 1 2 2 0 1 1
+3
+0 2 3
+`,
+
+  expectedOutput: `true
+false
+true
+true
+false
+`,
   order: 3,
 };

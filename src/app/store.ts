@@ -1,11 +1,9 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import counterReducer from "../features/counter/counterSlice";
 import contestReducer from "../features/contest/contestSlice";
 import { contestApi } from "../features/contest/contestAPI";
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     contest: contestReducer,
     [contestApi.reducerPath]: contestApi.reducer,
   },

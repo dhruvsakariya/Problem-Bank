@@ -57,26 +57,105 @@ export const validParentheses: Problem = {
   constraints: `<li class='mt-2'><code>1 <= s.length <= 10<sup>4</sup></code></li>
 <li class='mt-2 '><code>s</code> consists of parentheses only <code class="text-md">'()[]{}'</code>.</li>`,
   // handlerFunction: validParenthesesHandler,
-  python3StarterCode: `/**
-* @param {string} s
-* @return {boolean}
-*/
-var isValid = function(s) {
+  python3StarterCode: `from typing import List
 
-};`,
-  cppStarterCode: `class Solution {
-  public:
+class Solution:
+    def isValid(self, s: str) -> bool:
+        d = {'(': ')', '{': '}', '[': ']'}
+        stack = []
+
+        for i in s:
+            if i in d:
+                stack.append(i)
+            elif len(stack) == 0 or d[stack.pop()] != i:
+                return False
+
+        return len(stack) == 0
+
+def main():
+    t = int(input())
+    obj = Solution()
+    output = []
+
+    for _ in range(t):
+        s = input()
+        result = obj.isValid(s)
+        output.append(str(result).lower())
+
+    print("\\n".join(output))
+
+if __name__ == "__main__":
+    main()
+`,
+  cppStarterCode: `#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+
+class Solution {
+public:
     bool isValid(string s) {
-        
+
     }
-};`,
-  javaStarterCode: `class Solution {
-    public boolean isValid(String s) {
-        
+};
+
+int main() {
+    int t;
+    cin >> t;
+
+    while (t--) {
+        string s;
+        cin >> s;
+
+        Solution obj;
+        bool result = obj.isValid(s);
+
+        cout << (result ? "true" : "false") << endl;
     }
+
+    return 0;
 }`,
+  javaStarterCode: `import java.util.Scanner;
+import java.util.Stack;
+
+public class Solution {
+    public boolean isValid(String s) {
+
+    }
+
+    public static void main(String[] args) {
+      Scanner scanner = new Scanner(System.in);
+
+      int totalTestCases = scanner.nextInt();
+
+      Solution obj = new Solution();
+
+      StringBuilder output = new StringBuilder();
+
+      for (int i = 0; i < totalTestCases; i++) {
+          String s = scanner.next();
+          boolean result = obj.isValid(s);
+          output.append(result ? "true" : "false").append("\\n");
+      }
+
+      System.out.println(output.toString().trim());  // Print with an additional newline at the end
+      scanner.close();
+    }
+}  
+`,
   // starterFunctionName: "function validParentheses(",
-  testCases: "",
-  expectedOutput: "",
+  testCases: `5
+()
+()[]{}
+(]
+([)]
+(){}}{
+`,
+  expectedOutput: `true
+true
+false
+false
+false
+`,
   order: 4,
 };

@@ -13,7 +13,7 @@ export interface ContestState {
 const initialState: ContestState = {
   authToken: "",
   socketConnected: false,
-  problemIdx: 1,
+  problemIdx: 3,
   questions: [],
 };
 

@@ -34,7 +34,7 @@ export function getRandomProblemsArray(
       ({
         key: key,
         value: obj[key],
-        language: "python3",
+        language: "cpp",
         code: {
           python3: obj[key].python3StarterCode,
           cpp: obj[key].cppStarterCode,

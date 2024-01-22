@@ -131,45 +131,42 @@ int main() {
     return 0;
 }`,
 
-  javaStarterCode: `
+  javaStarterCode: `import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
-  import java.util.HashMap;
-  import java.util.Map;
-  import java.util.Scanner;
-  
-  public class Solution {
-      public int[] twoSum(int[] nums, int target) {
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+    }
 
-      }
-  
-      public static void main(String[] args) {
-          Scanner scanner = new Scanner(System.in);
-          int t = scanner.nextInt();
-          StringBuilder output = new StringBuilder();
-  
-          while (t-- > 0) {
-              int n = scanner.nextInt();
-              int[] nums = new int[n];
-  
-              for (int i = 0; i < n; i++) {
-                  nums[i] = scanner.nextInt();
-              }
-  
-              int target = scanner.nextInt();
-              Solution obj = new Solution();
-              int[] result = obj.twoSum(nums, target);
-  
-              if(result[0] != -1) {  // Check if a valid pair is found
-                  output.append(result[0]).append(" ").append(result[1]).append("\\n");
-              } else {
-                  output.append("No valid pair found \\n");
-              }
-          }
-  
-          System.out.println(output.toString().trim());
-          scanner.close();
-      }
-  }`,
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int t = scanner.nextInt();
+        StringBuilder output = new StringBuilder();
+
+        while (t-- > 0) {
+            int n = scanner.nextInt();
+            int[] nums = new int[n];
+
+            for (int i = 0; i < n; i++) {
+                nums[i] = scanner.nextInt();
+            }
+
+            int target = scanner.nextInt();
+            Solution obj = new Solution();
+            int[] result = obj.twoSum(nums, target);
+
+            if(result[0] != -1) {  // Check if a valid pair is found
+                output.append(result[0]).append(" ").append(result[1]).append("\\n");
+            } else {
+                output.append("No valid pair found \\n");
+            }
+        }
+
+        System.out.println(output.toString().trim());
+        scanner.close();
+    }
+}`,
   order: 1,
   testCases: `5
 4 2 7 11 15 9
