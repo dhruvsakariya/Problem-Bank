@@ -4,11 +4,13 @@ import type { Problem } from "../../utils/types/Problem";
 import { Language, Questions } from "./contest";
 
 export interface ContestState {
+  authToken: string;
   problemIdx: number;
   questions: Questions;
 }
 
 const initialState: ContestState = {
+  authToken: "",
   problemIdx: 0,
   questions: [],
 };
@@ -17,6 +19,11 @@ export const contestSlice = createSlice({
   name: "contest",
   initialState,
   reducers: {
+    setAuthToken: (state, action: PayloadAction<string>) => {
+      state.authToken = action.payload;
+    },
+
+
     setProblemIdx: (state, action: PayloadAction<number>) => {
       state.problemIdx = action.payload;
     },
@@ -35,24 +42,27 @@ export const contestSlice = createSlice({
       state.questions[idx].language = lang;
     },
 
-    
     setUserCode: (
       state,
-      action: PayloadAction<{  code:string;lang?: Language; idx?: number }>
+      action: PayloadAction<{ code: string; lang?: Language; idx?: number }>
     ) => {
       const code = action.payload.code;
-      
+
       const idx = action.payload.idx || state.problemIdx;
       const lang = action.payload.lang || state.questions[idx].language;
 
       state.questions[idx].code[lang] = code;
     },
-    
   },
 });
 
-export const { setProblemIdx, setQuestions, setProblemLanguage ,setUserCode } =
-  contestSlice.actions;
+export const {
+  setProblemIdx,
+  setQuestions,
+  setProblemLanguage,
+  setUserCode,
+  setAuthToken,
+} = contestSlice.actions;
 
 export const contestState = (state: RootState) => state.contest;
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import PreferenceNav from "./PreferenceNav/PreferenceNav";
 import Split from "react-split";
 import CodeMirror from "@uiw/react-codemirror";
@@ -7,7 +7,6 @@ import { javascript } from "@codemirror/lang-javascript";
 import { cpp } from "@codemirror/lang-cpp";
 import { java } from "@codemirror/lang-java";
 import EditorFooter from "./EditorFooter";
-import type { Problem } from "../../../utils/types/Problem";
 // import { useAuthState } from "react-firebase-hooks/auth";
 // import { auth, firestore } from "@/firebase/firebase";
 import { toast } from "react-toastify";

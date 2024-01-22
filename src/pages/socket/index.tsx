@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
+import { onChange } from "react-toastify/dist/core/store";
 import SockJS from "sockjs-client";
 import { Client, over, Message } from "webstomp-client";
 
@@ -12,9 +13,11 @@ const WebSocketComponent: React.FC = () => {
       new SockJS(`${process.env.REACT_APP_API_URL}stomp`),
       {
         heartbeat: false,
-        debug: true,
+        debug: false,
       }
     );
+
+  
 
     const onWsConnection = () => {
       console.log("connection succeeded");
@@ -66,7 +69,24 @@ const WebSocketComponent: React.FC = () => {
       });
 
       // Sending the script execution request
-      const script = `import java.util.Scanner;...`; // Your Java script here
+      const script = `import java.util.Scanner;
+      import java.util.NoSuchElementException;
+     
+     public class MyClass {
+      public static void main(String args[]) {
+         Scanner scanner = new Scanner(System.in);
+     
+         try {
+          System.out.println("Type a Line and enter....");
+         String txt = scanner.nextLine();
+         System.out.println("You have typed...");
+         System.out.println(txt);
+         } catch (NoSuchElementException e) {
+             System.out.println("Type something in the Stdin box above....");
+         }
+     
+       }
+     }`; // Your Java script here
       const data = JSON.stringify({
         script: script,
         language: "java",
@@ -76,7 +96,7 @@ const WebSocketComponent: React.FC = () => {
       stompClient.send("/app/execute-ws-api-token", data, {
         message_type: "execute",
         token:
-          "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJKRE9PRExFIiwic3ViIjoiV1MtQVBJLVRPS0VOIiwiY2xpZW50LWlkIjoiZjg0YjVkY2U1ZGMzMjYxN2E3OGMyZTgxYzhlN2JmMjIiLCJpYXQiOjE3MDU4MzcwODMsImV4cCI6MTcwNTgzNzI2M30.YAfywRM2Bewy-wG6OwDL0R-XmX6cpeXzKCWBD9BSjwg", // Replace with your token
+          "eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJKRE9PRExFIiwic3ViIjoiV1MtQVBJLVRPS0VOIiwiY2xpZW50LWlkIjoiZjg0YjVkY2U1ZGMzMjYxN2E3OGMyZTgxYzhlN2JmMjIiLCJpYXQiOjE3MDU4NjA0MDIsImV4cCI6MTcwNTg2MDU4Mn0.dAF5RgDyD9FCWKStezrisoM5yYwzF90-OWImGQDqG6s", // Replace with your token
       });
     };
 
@@ -94,19 +114,19 @@ const WebSocketComponent: React.FC = () => {
     };
   }, []);
 
-  const onInput = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const newResult = e.target.value;
-    setResult(newResult);
-
-    if (socketClient.current && e.nativeEvent instanceof InputEvent) {
-      const key = e.nativeEvent.data; // Get the character that was added
-      if (key) {
-        socketClient.current.send("/app/execute-ws-api-token", key, {
-          message_type: "input",
-          // Include the token here if required
-        });
-      }
+  function onInput(event: any) {
+    let key = event.key;
+    if (event.key === "Enter") {
+      key = "\n";
     }
+    console.log({key});
+    socketClient.current.send("/app/execute-ws-api-token", key, {
+      message_type: "input",
+    });
+  }
+
+  const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setResult(e.target.value);
   };
 
   return (
@@ -117,7 +137,8 @@ const WebSocketComponent: React.FC = () => {
         rows={5}
         cols={100}
         value={result}
-        onChange={onInput}
+        onKeyPress={onInput}
+        onChange={onChange}
       ></textarea>
     </div>
   );
