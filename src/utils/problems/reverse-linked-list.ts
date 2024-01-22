@@ -40,20 +40,52 @@ export const reverseLinkedList: Problem = {
 
   constraints: `<li class='mt-2'>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
 <li class='mt-2'><code>-5000 <= Node.val <= 5000</code></li>`,
-  python3StarterCode: `/**
-* Definition for singly-linked list.
-* function ListNode(val, next) {
-*     this.val = (val===undefined ? 0 : val)
-*     this.next = (next===undefined ? null : next)
-* }
-*/
-/**
-* @param {ListNode} head
-* @return {ListNode}
-*/
-var reverseList = function(head) {
-   
-};`,
+
+  python3StarterCode: `from typing import Optional
+
+# Definition for singly-linked list.
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def reverseList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        
+
+def main():
+    t = int(input())
+
+    solution = Solution()
+
+    for _ in range(t):
+        n = int(input())
+        values = list(map(int, input().split()))
+
+        head = None
+        tail = None
+
+        for val in values:
+            new_node = ListNode(val)
+            if head is None:
+                head = tail = new_node
+            else:
+                tail.next = new_node
+                tail = new_node
+
+        result = solution.reverseList(head)
+
+        # Output the reversed linked list without size information
+        while result:
+            print(result.val, end=" ")
+            result = result.next
+
+        print()  # Newline after each test case
+
+if __name__ == "__main__":
+    main()
+`,
+
   cppStarterCode: `#include <bits/stdc++.h>
 using namespace std;
 
@@ -109,20 +141,73 @@ int main() {
 
     return 0;
 }`,
-  javaStarterCode: `/**
-* Definition for singly-linked list.
-* public class ListNode {
-*     int val;
-*     ListNode next;
-*     ListNode() {}
-*     ListNode(int val) { this.val = val; }
-*     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-* }
-*/
-class Solution {
-   public ListNode reverseList(ListNode head) {
-       
-   }
+
+  javaStarterCode: `import java.util.Scanner;
+
+public class Main {
+    static class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {}
+
+        ListNode(int val) {
+            this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+            this.val = val;
+            this.next = next;
+        }
+    }
+
+    static class Solution {
+        public ListNode reverseList(ListNode head) {
+
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int t = scanner.nextInt();
+        Solution solution = new Solution();
+        StringBuilder output = new StringBuilder();
+
+        for (int i = 0; i < t; ++i) {
+            int n = scanner.nextInt();
+            ListNode head = null;
+            ListNode tail = null;
+
+            for (int j = 0; j < n; ++j) {
+                int val = scanner.nextInt();
+                ListNode newNode = new ListNode(val);
+                if (head == null) {
+                    head = tail = newNode;
+                } else {
+                    tail.next = newNode;
+                    tail = newNode;
+                }
+            }
+
+            ListNode result = solution.reverseList(head);
+            
+            while (result != null) {
+                output.append(result.val);
+                if (result.next != null) {
+                    output.append(" ");
+                } else {
+                    output.append(" ");  
+                }
+                result = result.next;
+            }
+
+            output.append("\\n");
+        }
+
+        System.out.print(output.toString());
+        scanner.close();
+    }
 }`,
   testCases: `5
 5
