@@ -16,6 +16,7 @@ stop reloading page
 collect user name & Start Contest Modal
 delete counter slice
 problem index back to 0
+problem 2 -> python 3 🪲
 
 
 // Kashish
