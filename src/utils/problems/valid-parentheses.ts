@@ -57,7 +57,7 @@ export const validParentheses: Problem = {
   constraints: `<li class='mt-2'><code>1 <= s.length <= 10<sup>4</sup></code></li>
 <li class='mt-2 '><code>s</code> consists of parentheses only <code class="text-md">'()[]{}'</code>.</li>`,
   // handlerFunction: validParenthesesHandler,
-  javascriptStarterCode: `/**
+  python3StarterCode: `/**
 * @param {string} s
 * @return {boolean}
 */
@@ -75,6 +75,8 @@ var isValid = function(s) {
         
     }
 }`,
-  starterFunctionName: "function validParentheses(",
+  // starterFunctionName: "function validParentheses(",
+  testCases: "",
+  expectedOutput: "",
   order: 4,
 };

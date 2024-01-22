@@ -3,7 +3,7 @@ import PreferenceNav from "./PreferenceNav/PreferenceNav";
 import Split from "react-split";
 import CodeMirror from "@uiw/react-codemirror";
 import { vscodeDark } from "@uiw/codemirror-theme-vscode";
-import { javascript } from "@codemirror/lang-javascript";
+import { python } from "@codemirror/lang-python";
 import { cpp } from "@codemirror/lang-cpp";
 import { java } from "@codemirror/lang-java";
 import EditorFooter from "./EditorFooter";
@@ -115,14 +115,14 @@ const Playground: React.FC<PlaygroundProps> = ({
 
   const getLanguageExtension = (language: Language) => {
     switch (language) {
-      case "javascript":
-        return javascript();
+      case "python3":
+        return python();
       case "cpp":
         return cpp();
       case "java":
         return java();
       default:
-        return javascript();
+        return cpp();
     }
   };
 

@@ -12,6 +12,9 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {
   const socketClient = useContext(SocketContext);
 
   const problemIdx = useAppSelector((state) => state.contest.problemIdx);
+  const problem = useAppSelector(
+    (state) => state.contest.questions[problemIdx]
+  ).value;
   const problemLanguage = useAppSelector(
     (state) => state.contest.questions[problemIdx]
   ).language;
@@ -33,24 +36,17 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {
       (message: Message) => {
         const statusCode = parseInt(message.headers.statusCode, 10);
         if (statusCode === 201) {
-          let input = `5
-        4 2 7 11 15 9
-        3 3 2 4 6
-        2 3 3 6
-        6 1 3 2 7 4 5 12
-        4 -10 -1 -18 -19 -19
-        `;
-          socketClient.current.send("/app/execute-ws-api-token", input, {
-            message_type: "input",
-          });
+          socketClient.current.send(
+            "/app/execute-ws-api-token",
+            problem.testCases,
+            {
+              message_type: "input",
+            }
+          );
         } else if (statusCode === 200) {
-          let ans = "0 1 \n1 2 \n0 1 \n3 5 \n1 2 \n";
-
-          if (message.body === ans) {
-            console.log("✅✅✅ Passed", "color: #bada55");
+          if (message.body === problem.expectedOutput) {
+            console.log("%c✅✅✅ Passed", "color: #00d26a;");
           }
-
-          console.log(message.body);
         }
       }
     );
@@ -59,8 +55,6 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {
       message_type: "execute",
       token: authToken,
     });
-
-    // "0 1 \n1 2 \n0 1 \n3 5 \n1 2 \n"
   };
 
   return (

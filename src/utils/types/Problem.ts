@@ -17,9 +17,11 @@ export type Problem = {
   examples: Example[];
   constraints: string;
   order: number;
-  javascriptStarterCode: string;
-  cppStarterCode:string;
-  javaStarterCode:string;
+  python3StarterCode: string;
+  cppStarterCode: string;
+  javaStarterCode: string;
   // handlerFunction: ((fn: any) => boolean) | string;
-  starterFunctionName: string;
+  // starterFunctionName: string;
+  testCases: string;
+  expectedOutput: string;
 };

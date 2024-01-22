@@ -5,7 +5,7 @@
 ✅implement split
 define 10 problems ( 5 defined )
 ✅render problems
-✅add code editor for ( javascript , cpp , java )
+✅add code editor for ( python3 , cpp , java )
 ✅add test cases split with min 5 test cases
 
 ✅jdoodle websocket api integration

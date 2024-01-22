@@ -128,8 +128,8 @@ const LanguagesOption: FC<LanguagesOptionProps> = ({
 
   return (
     <ul className="text-white bg-dark-fill-4 p-1 rounded">
-      <li className={styles.language} onClick={() => handleClick("javascript")}>
-        javascript
+      <li className={styles.language} onClick={() => handleClick("python3")}>
+      python3
       </li>
       <li className={styles.language} onClick={() => handleClick("cpp")}>
         cpp

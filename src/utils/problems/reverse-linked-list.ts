@@ -115,7 +115,7 @@ export const reverseLinkedList: Problem = {
 
   constraints: `<li class='mt-2'>The number of nodes in the list is the range <code>[0, 5000]</code>.</li>
 <li class='mt-2'><code>-5000 <= Node.val <= 5000</code></li>`,
-javascriptStarterCode: `/**
+python3StarterCode: `/**
 * Definition for singly-linked list.
 * function ListNode(val, next) {
 *     this.val = (val===undefined ? 0 : val)
@@ -129,7 +129,7 @@ javascriptStarterCode: `/**
 var reverseList = function(head) {
    
 };`,
-cppStarterCode: `/**
+  cppStarterCode: `/**
 * Definition for singly-linked list.
 * struct ListNode {
 *     int val;
@@ -145,7 +145,7 @@ public:
        
    }
 };`,
-javaStarterCode: `/**
+  javaStarterCode: `/**
 * Definition for singly-linked list.
 * public class ListNode {
 *     int val;
@@ -161,6 +161,8 @@ class Solution {
    }
 }`,
   // handlerFunction: reverseLinkedListHandler,
-  starterFunctionName: "function reverseLinkedList(",
+  // starterFunctionName: "function reverseLinkedList(",
+  testCases: "",
+  expectedOutput: "",
   order: 2,
 };

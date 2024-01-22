@@ -71,7 +71,7 @@ export const jumpGame: Problem = {
   ],
   constraints: `<li class='mt-2'><code>1 <= nums.length <= 10^4</code></li>
     <li class='mt-2'><code>0 <= nums[i] <= 10^5</code></li>`,
-  javascriptStarterCode: `/**
+    python3StarterCode: `/**
 * @param {number[]} nums
 * @return {boolean}
 */
@@ -90,6 +90,8 @@ public:
   }
 }`,
   // handlerFunction: jumpGameHandler,
-  starterFunctionName: "function canJump(",
+  // starterFunctionName: "function canJump(",
+  testCases: "",
+  expectedOutput: "",
   order: 3,
 };

@@ -91,7 +91,7 @@ export const search2DMatrix: Problem = {
   <li class='mt-2'><code>1 <= m, n <= 100</code></li>
   <li class='mt-2'><code>-10<sup>4</sup> <= matrix[i][j], target <= 10<sup>4</sup></code></li>
   `,
-  javascriptStarterCode: `/**
+  python3StarterCode: `/**
  * @param {number[][]} matrix
  * @param {number} target
  * @return {boolean}
@@ -111,6 +111,8 @@ var searchMatrix = function(matrix, target) {
     }
 }`,
   // handlerFunction: search2DMatrixHandler,
-  starterFunctionName: "function searchMatrix",
+  // starterFunctionName: "function searchMatrix",
+  testCases: "",
+  expectedOutput: "",
   order: 5,
 };
