@@ -3,7 +3,6 @@
 ✅Redux Toolkit Query
 ✅React Router Dom
 ✅implement split
-define 10 problems ( 5 defined )
 ✅render problems
 ✅add code editor for ( python3 , cpp , java )
 ✅add test cases split with min 5 test cases
@@ -15,13 +14,14 @@ define 10 problems ( 5 defined )
 ✅submit logic
 ✅crackers
 ✅Complete bar
+✅problem 2 -> python 3 🪲
+
 result page
 error handling after submission
 
 stop reloading page
 collect user name & Start Contest Modal
 problem index back to 0
-✅problem 2 -> python 3 🪲
 
 
 // Kashish
