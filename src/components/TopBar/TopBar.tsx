@@ -1,13 +1,30 @@
-import { type FC } from "react";
+import { useEffect, useState, type FC } from "react";
 import Timer from "../Timer/Timer";
 
 // Assets
 import logo from "../../assets/JD_logo_white-fb3f0398.png";
 import avatar from "../../assets/avatar.png";
+import { useAppSelector } from "../../app/hooks";
 
 interface Props {}
 
 const TopBar: FC<Props> = () => {
+  const [completed, setCompleted] = useState(0);
+
+  const questions = useAppSelector((state) => state.contest.questions);
+
+  useEffect(() => {
+    let count = 0;
+
+    questions.forEach((question) => {
+      if (question.solved) {
+        count++;
+      }
+    });
+
+    setCompleted(count);
+  }, [questions]);
+
   return (
     <nav className="relative flex h-[50px] w-full shrink-0 items-center px-5 bg-dark-layer-1 text-dark-gray-7">
       <div className={"flex w-full items-center justify-between"}>
@@ -27,13 +44,17 @@ const TopBar: FC<Props> = () => {
                 Completed
               </h6>
               <h6 className="flex items-center antialiased tracking-normal font-sans text-sm font-semibold leading-relaxed text-dark-gray-8">
-                1<span className="mx-0.5">&#47;</span>5
+                {completed}
+                <span className="mx-0.5">&#47;</span>5
               </h6>
             </div>
             <div className="flex flex-start bg-dark-gray-6/75 overflow-hidden w-full font-sans rounded-full text-xs font-medium h-2 ">
               <div
-                className="flex justify-center items-center h-full overflow-hidden break-all rounded-full bg-dark-green-s text-white"
-                style={{ width: "20%" }}
+                className="flex justify-center items-center h-full overflow-hidden break-all rounded-full bg-light-green-s text-white"
+                style={{
+                  width: `${completed * 20}%`,
+                  transition: "width 1s ease-in 0s",
+                }}
               ></div>
             </div>
           </div>

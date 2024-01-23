@@ -19,7 +19,6 @@ import { setUserCode } from "../../../features/contest/contestSlice";
 interface PlaygroundProps {
   //   problem: Problem;
   setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
-  setSolved: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface ISettings {
@@ -31,7 +30,6 @@ export interface ISettings {
 const Playground: React.FC<PlaygroundProps> = ({
   //   problem,
   setSuccess,
-  setSolved,
 }) => {
   // let problem = validParentheses;
 
@@ -56,48 +54,6 @@ const Playground: React.FC<PlaygroundProps> = ({
     settingsModalIsOpen: false,
     dropdownIsOpen: false,
   });
-
-  const handleSubmit = async () => {
-    try {
-      // userCode = userCode.slice(userCode.indexOf(problem.starterFunctionName));
-      // const cb = new Function(`return ${userCode}`)();
-      // const handler = (cb: any) => true;
-      // if (typeof handler === "function") {
-      //   const success = handler(cb);
-      //   if (success) {
-      //     toast.success("Congrats! All tests passed!", {
-      //       position: "top-center",
-      //       autoClose: 3000,
-      //       theme: "dark",
-      //     });
-      //     setSuccess(true);
-      //     setTimeout(() => {
-      //       setSuccess(false);
-      //     }, 4000);
-      //     setSolved(true);
-      //   }
-      // }
-    } catch (error: any) {
-      // console.log(error.message);
-      if (
-        error.message.startsWith(
-          "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:"
-        )
-      ) {
-        toast.error("Oops! One or more test cases failed", {
-          position: "top-center",
-          autoClose: 3000,
-          theme: "dark",
-        });
-      } else {
-        toast.error(error.message, {
-          position: "top-center",
-          autoClose: 3000,
-          theme: "dark",
-        });
-      }
-    }
-  };
 
   //   useEffect(() => {
   //     const code = localStorage.getItem(`code-${pid}`);
@@ -191,7 +147,7 @@ const Playground: React.FC<PlaygroundProps> = ({
         </div>
       </Split>
 
-      <EditorFooter handleSubmit={handleSubmit} />
+      <EditorFooter setSuccess={setSuccess} />
     </div>
   );
 };

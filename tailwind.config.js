@@ -22,6 +22,7 @@ module.exports = {
         "dark-yellow": "rgb(255 192 30)",
         "dark-pink": "rgb(255 55 95)",
         "olive": "rgb(0, 184, 163)",
+        "light-green-s":"#36ea73",
         "dark-green-s": "rgb(44 187 93)",
         "dark-blue-s": "rgb(10 132 255)",
         "nobel": "rgb(180, 180, 180)",

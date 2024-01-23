@@ -18,6 +18,7 @@ const ProblemTab = () => {
   const dispatch = useAppDispatch();
 
   const problemIdx = useAppSelector((state) => state.contest.problemIdx);
+  const questions = useAppSelector((state) => state.contest.questions);
 
   return (
     <Tabs
@@ -31,7 +32,13 @@ const ProblemTab = () => {
         {tabs.map((tab, index) => {
           return (
             <Tab key={index}>
-              <span className="whitespace-nowrap">{tab.name}</span>
+              <span
+                className={`whitespace-nowrap ${
+                  questions[index].solved ? "!text-light-green-s" : ""
+                } `}
+              >
+                {tab.name}
+              </span>
             </Tab>
           );
         })}

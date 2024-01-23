@@ -1,15 +1,19 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { BsChevronUp } from "react-icons/bs";
 import { SocketContext } from "../../../pages/problems/problem";
-import { useAppSelector } from "../../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { Message } from "webstomp-client";
 import { toast } from "react-toastify";
+import { setProblemSolved } from "../../../features/contest/contestSlice";
 
 type EditorFooterProps = {
-  handleSubmit: () => void;
+  setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {
+const EditorFooter: React.FC<EditorFooterProps> = ({ setSuccess }) => {
+  const [method, setMethod] = useState<"run" | "submit">("run");
+
+  const dispatch = useAppDispatch();
   const socketClient = useContext(SocketContext);
 
   const problemIdx = useAppSelector((state) => state.contest.problemIdx);
@@ -49,11 +53,25 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {
           );
         } else if (statusCode === 200) {
           if (message.body === problem.expectedOutput) {
-            toast.success("Congrats! All tests passed!", {
-              position: "top-center",
-              autoClose: 3000,
-              theme: "dark",
-            });
+            if (method === "run") {
+              toast.success("Congrats! All tests passed!", {
+                position: "bottom-center",
+                autoClose: 3000,
+                theme: "dark",
+              });
+            } else if (method === "submit") {
+              toast.success("Congrats! Solution Accepted", {
+                position: "bottom-center",
+                autoClose: 3000,
+                theme: "dark",
+              });
+              setSuccess(true);
+              setTimeout(() => {
+                setSuccess(false);
+              }, 4000);
+              dispatch(setProblemSolved({ solved: true }));
+            }
+
             console.log("%c✅✅✅ Passed", "color: #00d26a;");
           }
         }
@@ -67,9 +85,9 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {
         socketClient.current.unsubscribe(id);
       }
     };
-  }, [socketConnected, problemIdx]); // Empty dependency array ensures this effect runs only once, when the component mounts
+  }, [socketConnected, problemIdx, method]); // Empty dependency array ensures this effect runs only once, when the component mounts
 
-  const handleRun = () => {
+  const executeCode = () => {
     const data = JSON.stringify({
       script: userCode,
       language: problemLanguage,
@@ -80,6 +98,58 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ handleSubmit }) => {
       message_type: "execute",
       token: authToken,
     });
+  };
+
+  const handleRun = () => {
+    try {
+      setMethod("run");
+      executeCode();
+    } catch (error: any) {
+      // console.log(error.message);
+      if (
+        error.message.startsWith(
+          "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:"
+        )
+      ) {
+        toast.error("Oops! One or more test cases failed", {
+          position: "bottom-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
+      } else {
+        toast.error(error.message, {
+          position: "bottom-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
+      }
+    }
+  };
+
+  const handleSubmit = async () => {
+    try {
+      setMethod("submit");
+      executeCode();
+    } catch (error: any) {
+      // console.log(error.message);
+      if (
+        error.message.startsWith(
+          "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:"
+        )
+      ) {
+        toast.error("Oops! One or more test cases failed", {
+          position: "bottom-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
+      } else {
+        toast.error(error.message, {
+          position: "bottom-center",
+          autoClose: 3000,
+          theme: "dark",
+        });
+      }
+    }
   };
 
   return (

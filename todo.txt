@@ -10,13 +10,18 @@ define 10 problems ( 5 defined )
 
 ✅jdoodle websocket api integration
 
-run and check the code
+✅delete counter slice
+✅run and check the code
+✅submit logic
+✅crackers
+✅Complete bar
+result page
+error handling after submission
 
 stop reloading page
 collect user name & Start Contest Modal
-delete counter slice
 problem index back to 0
-problem 2 -> python 3 🪲
+✅problem 2 -> python 3 🪲
 
 
 // Kashish

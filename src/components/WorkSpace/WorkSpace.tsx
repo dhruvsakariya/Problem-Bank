@@ -9,13 +9,13 @@ const WorkSpace = () => {
 
   const { width, height } = useWindowSize();
   const [success, setSuccess] = useState(false);
-  const [solved, setSolved] = useState(false);
+  // const [solved, setSolved] = useState(false);
 
   return (
     <Split className="split" minSize={0}>
       <ProblemDescription />
       <div className="bg-dark-fill-2">
-        <Playground setSuccess={setSuccess} setSolved={setSolved} />
+        <Playground setSuccess={setSuccess} />
         {success && (
           <Confetti
             gravity={0.3}
