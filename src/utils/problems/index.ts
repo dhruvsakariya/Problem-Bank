@@ -25,8 +25,7 @@ export function getRandomProblemsArray(
   count: number
 ): Questions {
   // Shuffle keys
-  // const shuffledKeys = Object.keys(obj).sort(() => 0.5 - Math.random());
-  const shuffledKeys = Object.keys(obj);
+  const shuffledKeys = Object.keys(obj).sort(() => 0.5 - Math.random());
 
   // Map to array of key-value pairs and slice
   const randomProblemsArray = shuffledKeys.slice(0, count).map(

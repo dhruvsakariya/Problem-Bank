@@ -29,6 +29,21 @@ const App = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const handleBeforeUnload = (event) => {
+      const message =
+        "If you reload this page, your previous action will be repeated";
+      event.returnValue = message;
+      return message;
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  useEffect(() => {
     (async () => {
       const problems = (await import("./utils/problems")).problems;
 

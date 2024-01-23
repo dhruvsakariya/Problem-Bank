@@ -3,6 +3,9 @@ import { useLazyExecuteProgramQuery } from "../../features/contest/contestAPI";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import type { Question } from "../../features/contest/contest";
 import { setTestCaseResult } from "../../features/contest/contestSlice";
+import Confetti from "react-confetti";
+import useWindowSize from "../../hooks/useWindowSize";
+import { toast } from "react-toastify";
 
 interface Props {}
 
@@ -10,6 +13,7 @@ const Result: FC<Props> = () => {
   const dispatch = useAppDispatch();
   const [execute] = useLazyExecuteProgramQuery();
   const questions = useAppSelector((state) => state.contest.questions);
+  const [celebrate, setCelebrate] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -42,6 +46,46 @@ const Result: FC<Props> = () => {
     })();
   }, []);
 
+  useEffect(() => {
+    let allExamplesPassed = true;
+
+    for (let i = 0; i < questions.length; i++) {
+      const question = questions[i];
+
+      for (let j = 0; j < question.value.examples.length; j++) {
+        const example = question.value.examples[j];
+
+        if (example.result !== "Passed") {
+          allExamplesPassed = false;
+          break;
+        }
+      }
+
+      if (!allExamplesPassed) {
+        break;
+      }
+    }
+
+    if (allExamplesPassed) {
+      setCelebrate(true);
+      toast.success("Congrats! All tests passed!", {
+        position: "bottom-center",
+        autoClose: 5000,
+        theme: "dark",
+      });
+
+      const timeoutId = setTimeout(() => {
+        setCelebrate(false);
+      }, 5000);
+
+      return () => clearTimeout(timeoutId);
+    }
+
+    return () => {};
+  }, [questions, setCelebrate]);
+
+  const { width, height } = useWindowSize();
+
   return (
     <div className="bg-dark-layer-1 flex h-screen overflow-hidden">
       <div className="w-[50vw] overflow-y-scroll mx-auto">
@@ -51,6 +95,14 @@ const Result: FC<Props> = () => {
 
         <div className="h-[200px]" />
       </div>
+      {celebrate && (
+        <Confetti
+          gravity={0.3}
+          tweenDuration={5000}
+          width={width - 1}
+          height={height - 1}
+        />
+      )}
     </div>
   );
 };

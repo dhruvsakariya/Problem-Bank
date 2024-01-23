@@ -20,9 +20,11 @@
 
 ✅enable polling 
 
-error handling after submission
-stop reloading page
-random question
+✅in result page if all test ( 25 ) passed celebrate
+
+✅error handling after submission
+✅stop reloading page
+✅random question
 
 
 // Kashish
