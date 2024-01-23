@@ -87,11 +87,11 @@ const Detail: FC<DetailProps> = ({ problem }) => {
                   activeTestCaseId === index ? " bg-dark-fill-2/[0.10]" : ""
                 } ${
                   problem.value.examples[index].result === "Failed"
-                    ? "text-light-red-s"
+                    ? "!text-light-red-s"
                     : "text-white"
                 } ${
                   problem.value.examples[index].result === "Passed"
-                    ? "text-light-green-s"
+                    ? "!text-light-green-s"
                     : "text-white"
                 } `}
               >
@@ -115,11 +115,11 @@ const Detail: FC<DetailProps> = ({ problem }) => {
         <div
           className={`w-full cursor-text rounded-lg border px-3 py-[10px] bg-dark-fill-3 border-transparent  mt-2 ${
             problem.value.examples[activeTestCaseId].result === "Failed"
-              ? "text-light-red-s"
+              ? "!text-light-red-s"
               : "text-white"
           } ${
             problem.value.examples[activeTestCaseId].result === "Passed"
-              ? "text-light-green-s "
+              ? "!text-light-green-s "
               : "text-white"
           }`}
         >

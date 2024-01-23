@@ -3,17 +3,14 @@ import React, {
   createContext,
   useEffect,
   useRef,
-  useState,
 } from "react";
 import TopBar from "../../components/TopBar/TopBar";
 import WorkSpace from "../../components/WorkSpace/WorkSpace";
 import { useAppDispatch } from "../../app/hooks";
 import {
   setAuthToken,
-  setQuestions,
   setSocketConnected,
 } from "../../features/contest/contestSlice";
-import { getRandomProblemsArray } from "../../utils/problems";
 import { useGetAuthTokenQuery } from "../../features/contest/contestAPI";
 import SockJS from "sockjs-client";
 import { Client, over } from "webstomp-client";
@@ -23,7 +20,7 @@ const Problem = () => {
   const dispatch = useAppDispatch();
 
   const { data } = useGetAuthTokenQuery(undefined, {
-    // pollingInterval: 180000,
+    pollingInterval: 180000,
   });
 
   useEffect(() => {

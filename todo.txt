@@ -16,14 +16,12 @@
 ✅Complete bar
 ✅problem 2 -> python 3 🪲
 
-result page
+✅result page
+
+✅enable polling 
 
 error handling after submission
-
-collect user name & Start Contest Modal
 stop reloading page
-problem index back to 0
-enable polling 
 random question
 
 
