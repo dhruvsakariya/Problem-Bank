@@ -40,7 +40,7 @@ export function getRandomProblemsArray(
           cpp: obj[key].cppStarterCode,
           java: obj[key].javaStarterCode,
         },
-        solved: false,
+        submitted: false,
       } as Questions[0])
   );
 

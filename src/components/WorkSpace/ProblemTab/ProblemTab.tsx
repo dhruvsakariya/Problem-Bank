@@ -34,7 +34,7 @@ const ProblemTab = () => {
             <Tab key={index}>
               <span
                 className={`whitespace-nowrap ${
-                  questions[index].solved ? "!text-light-green-s" : ""
+                  questions[index].submitted ? "!text-dark-green-s" : ""
                 } `}
               >
                 {tab.name}

@@ -17,11 +17,14 @@
 ✅problem 2 -> python 3 🪲
 
 result page
+
 error handling after submission
 
-stop reloading page
 collect user name & Start Contest Modal
+stop reloading page
 problem index back to 0
+enable polling 
+random question
 
 
 // Kashish

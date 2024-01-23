@@ -4,7 +4,7 @@ import { SocketContext } from "../../../pages/problems/problem";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { Message } from "webstomp-client";
 import { toast } from "react-toastify";
-import { setProblemSolved } from "../../../features/contest/contestSlice";
+import { setProblemSubmitted } from "../../../features/contest/contestSlice";
 
 type EditorFooterProps = {
   setSuccess: React.Dispatch<React.SetStateAction<boolean>>;
@@ -52,14 +52,17 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ setSuccess }) => {
             }
           );
         } else if (statusCode === 200) {
-          if (message.body === problem.expectedOutput) {
-            if (method === "run") {
+          if (method === "run") {
+            if (message.body === problem.expectedOutput) {
               toast.success("Congrats! All tests passed!", {
                 position: "bottom-center",
                 autoClose: 3000,
                 theme: "dark",
               });
-            } else if (method === "submit") {
+            }
+          } else if (method === "submit") {
+            dispatch(setProblemSubmitted({ submitted: true }));
+            if (message.body === problem.expectedOutput) {
               toast.success("Congrats! Solution Accepted", {
                 position: "bottom-center",
                 autoClose: 3000,
@@ -69,11 +72,10 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ setSuccess }) => {
               setTimeout(() => {
                 setSuccess(false);
               }, 4000);
-              dispatch(setProblemSolved({ solved: true }));
             }
-
-            console.log("%c✅✅✅ Passed", "color: #00d26a;");
           }
+
+          console.log("%c✅✅✅ Passed", "color: #00d26a;");
         }
       }
     );

@@ -9,6 +9,9 @@ import { useAppSelector } from "../../app/hooks";
 interface Props {}
 
 const TopBar: FC<Props> = () => {
+  const limit = 5;
+
+  const [showResult, setShowResult] = useState(false);
   const [completed, setCompleted] = useState(0);
 
   const questions = useAppSelector((state) => state.contest.questions);
@@ -17,13 +20,26 @@ const TopBar: FC<Props> = () => {
     let count = 0;
 
     questions.forEach((question) => {
-      if (question.solved) {
+      if (question.submitted) {
         count++;
       }
     });
 
     setCompleted(count);
   }, [questions]);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (completed === limit)
+      timeoutId = setTimeout(() => setShowResult(true), 3000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [completed]);
+
+  const handleViewResult = () => {};
 
   return (
     <nav className="relative flex h-[50px] w-full shrink-0 items-center px-5 bg-dark-layer-1 text-dark-gray-7">
@@ -38,26 +54,36 @@ const TopBar: FC<Props> = () => {
         </a>
 
         <div className="flex items-center gap-4 flex-1 justify-center">
-          <div className="w-full max-w-[250px]">
-            <div className="mb-1 flex items-center justify-between gap-4">
-              <h6 className="block antialiased tracking-normal font-sans text-sm font-semibold leading-relaxed text-dark-gray-8">
-                Completed
-              </h6>
-              <h6 className="flex items-center antialiased tracking-normal font-sans text-sm font-semibold leading-relaxed text-dark-gray-8">
-                {completed}
-                <span className="mx-0.5">&#47;</span>5
-              </h6>
+          {!showResult ? (
+            <div className="w-full max-w-[250px]">
+              <div className="mb-1 flex items-center justify-between gap-4">
+                <h6 className="block antialiased tracking-normal font-sans text-sm font-semibold leading-relaxed text-dark-gray-8">
+                  Submitted
+                </h6>
+                <h6 className="flex items-center antialiased tracking-normal font-sans text-sm font-semibold leading-relaxed text-dark-gray-8">
+                  {completed}
+                  <span className="mx-0.5">&#47;</span>5
+                </h6>
+              </div>
+              <div className="flex flex-start bg-dark-gray-6/75 overflow-hidden w-full font-sans rounded-full text-xs font-medium h-2 ">
+                <div
+                  className="flex justify-center items-center h-full overflow-hidden break-all rounded-full bg-light-green-s text-white"
+                  style={{
+                    width: `${completed * 20}%`,
+                    transition: "width 1s ease-in 0s",
+                  }}
+                ></div>
+              </div>
             </div>
-            <div className="flex flex-start bg-dark-gray-6/75 overflow-hidden w-full font-sans rounded-full text-xs font-medium h-2 ">
-              <div
-                className="flex justify-center items-center h-full overflow-hidden break-all rounded-full bg-light-green-s text-white"
-                style={{
-                  width: `${completed * 20}%`,
-                  transition: "width 1s ease-in 0s",
-                }}
-              ></div>
-            </div>
-          </div>
+          ) : (
+            <button
+              type="button"
+              className="px-5 py-1.5 font-medium items-center transition-all focus:outline-none inline-flex text-sm text-white bg-dark-green-s hover:bg-green-3 rounded-lg"
+              onClick={handleViewResult}
+            >
+              View Result
+            </button>
+          )}
         </div>
 
         <div className="flex items-center space-x-4 flex-1 justify-end">

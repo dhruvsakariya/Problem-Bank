@@ -46,15 +46,15 @@ export const contestSlice = createSlice({
       state.questions[idx].language = lang;
     },
 
-    setProblemSolved: (
+    setProblemSubmitted: (
       state,
-      action: PayloadAction<{ solved: boolean; idx?: number }>
+      action: PayloadAction<{ submitted: boolean; idx?: number }>
     ) => {
-      const solved = action.payload.solved;
+      const submitted = action.payload.submitted;
 
       const idx = action.payload.idx || state.problemIdx;
 
-      state.questions[idx].solved = solved;
+      state.questions[idx].submitted = submitted;
     },
 
     setUserCode: (
@@ -76,7 +76,7 @@ export const {
   setQuestions,
   setSocketConnected,
   setProblemLanguage,
-  setProblemSolved,
+  setProblemSubmitted,
   setUserCode,
   setAuthToken,
 } = contestSlice.actions;
