@@ -37,14 +37,14 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ setSuccess }) => {
   }
 
   useEffect(() => {
-    if (!socketConnected || !socketClient.current) return;
+    if (!socketConnected || !socketClient?.current) return;
 
     const { id } = socketClient.current.subscribe(
       "/user/queue/execute-i",
       (message: Message) => {
-        const statusCode = parseInt(message.headers.statusCode, 10);
+        const statusCode = parseInt(message.headers.statusCode as string, 10);
         if (statusCode === 201) {
-          socketClient.current.send(
+          socketClient.current?.send(
             "/app/execute-ws-api-token",
             problem.testCases,
             {
@@ -95,11 +95,11 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ setSuccess }) => {
       language: problemLanguage,
       versionIndex: 4,
     });
-
-    socketClient.current.send("/app/execute-ws-api-token", data, {
-      message_type: "execute",
-      token: authToken,
-    });
+    if (socketClient)
+      socketClient.current?.send("/app/execute-ws-api-token", data, {
+        message_type: "execute",
+        token: authToken,
+      });
   };
 
   const handleRun = () => {

@@ -24,12 +24,12 @@ export const router = createBrowserRouter([
   { path: "/result", element: <Result /> },
 ]);
 
-const App = ({ children }) => {
+const App = ({ children }: { children: any }) => {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const handleBeforeUnload = (event) => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
       const message =
         "If you reload this page, your previous action will be repeated";
       event.returnValue = message;
