@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 import { Language, Questions } from "./contest";
+import { TestCaseResult } from "../../utils/types/Problem";
 
 export interface ContestState {
   authToken: string;
@@ -33,6 +34,17 @@ export const contestSlice = createSlice({
     },
     setQuestions: (state, action: PayloadAction<Questions>) => {
       state.questions = action.payload;
+    },
+    setTestCaseResult: (
+      state,
+      action: PayloadAction<{
+        queIdx: number;
+        caseIdx: number;
+        result: TestCaseResult;
+      }>
+    ) => {
+      const { queIdx, caseIdx, result } = action.payload;
+      state.questions[queIdx].value.examples[caseIdx].result = result;
     },
 
     setProblemLanguage: (
@@ -79,6 +91,7 @@ export const {
   setProblemSubmitted,
   setUserCode,
   setAuthToken,
+  setTestCaseResult,
 } = contestSlice.actions;
 
 export const contestState = (state: RootState) => state.contest;

@@ -2,42 +2,6 @@ import type { Problem } from "../types/Problem";
 import example1 from "./images/search-a-2d-1.jpg";
 import example2 from "./images/search-a-2d-2.jpg";
 
-// export const search2DMatrixHandler = (fn: any) => {
-//   try {
-//     const tests = [
-//       {
-//         matrix: [
-//           [1, 3, 5, 7],
-//           [10, 11, 16, 20],
-//           [23, 30, 34, 60],
-//         ],
-//         target: 3,
-//       },
-//       {
-//         matrix: [
-//           [1, 3, 5, 7],
-//           [10, 11, 16, 20],
-//           [23, 30, 34, 60],
-//         ],
-//         target: 13,
-//       },
-//     ];
-//     const answers = [true, false];
-//     for (let i = 0; i < tests.length; i++) {
-//       const result = fn(tests[i].matrix, tests[i].target);
-//       assert.deepEqual(result, answers[i]);
-//     }
-//     return true;
-//   } catch (error: any) {
-//     console.log("Error from searchA2DMatrixHandler: ", error);
-//     throw new Error(error);
-//   }
-// };
-const starterCodeSearch2DMatrixJS = `// Do not edit function name
-function searchMatrix(matrix, target) {
-  // Write your code here
-};`;
-
 export const search2DMatrix: Problem = {
   id: "search-a-2d-matrix",
   title: "5. Search a 2D Matrix",
@@ -57,6 +21,15 @@ export const search2DMatrix: Problem = {
   [23,30,34,60]
 ], target = 3`,
       outputText: `true`,
+      expectedText: `true
+`,
+      stdin: `1
+3 4
+1 3 5 7
+10 11 16 20
+23 30 34 60
+3
+`,
       img: example1,
     },
     {
@@ -67,22 +40,54 @@ export const search2DMatrix: Problem = {
         [23,30,34,60]
       ], target = 13`,
       outputText: `false`,
+      expectedText: `false
+`,
+      stdin: `1
+3 4
+1 3 5 7
+10 11 16 20
+23 30 34 60
+13
+`,
       img: example2,
     },
     {
       id: 3,
       inputText: `matrix = [[1]], target = 1`,
       outputText: `true`,
+      expectedText: `true
+`,
+      stdin: `1
+1 1
+1
+1
+`,
     },
     {
       id: 4,
       inputText: `matrix = [[1],[3],[5]] target = 3`,
       outputText: `true`,
+      expectedText: `true
+`,
+      stdin: `1
+3 1
+1
+3
+5
+3
+`,
     },
     {
       id: 5,
       inputText: `matrix = [[1, 3]] target = 3`,
       outputText: `true`,
+      expectedText: `true
+`,
+      stdin: `1
+1 2
+1 3
+3
+`,
     },
   ],
   constraints: `

@@ -13,28 +13,58 @@ export const reverseLinkedList: Problem = {
       id: 1,
       inputText: "head = [1,2,3,4,5]",
       outputText: "[5,4,3,2,1]",
+      expectedText: `5 4 3 2 1 
+`,
+      stdin: `1
+5
+1 2 3 4 5
+`,
       img: example1,
     },
     {
       id: 2,
       inputText: "head = [1,2]",
       outputText: "[2,1]",
+      expectedText: `2 1 
+`,
+      stdin: `1
+2
+1 2
+`,
       img: example2,
     },
     {
       id: 3,
       inputText: "head = [1,2,3]",
       outputText: "[3,2,1]",
+      expectedText: `3 2 1 
+`,
+      stdin: `1
+3
+1 2 3
+`,
     },
     {
       id: 4,
       inputText: "head = [1]",
       outputText: "[1]",
+      expectedText: `1 
+`,
+      stdin: `1
+1
+1
+`,
     },
     {
       id: 5,
       inputText: "head = [1,2,6,3,4,5,6]",
       outputText: "[6,5,4,3,6,2,1]",
+      expectedText: `6 5 4 3 6 2 1 
+`,
+      stdin: `1
+7
+1 2 6 3 4 5 6
+`,
     },
   ],
 

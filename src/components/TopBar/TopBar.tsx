@@ -5,11 +5,14 @@ import Timer from "../Timer/Timer";
 import logo from "../../assets/JD_logo_white-fb3f0398.png";
 import avatar from "../../assets/avatar.png";
 import { useAppSelector } from "../../app/hooks";
+import { useNavigate } from "react-router-dom";
 
 interface Props {}
 
 const TopBar: FC<Props> = () => {
   const limit = 5;
+
+  const navigate = useNavigate();
 
   const [showResult, setShowResult] = useState(false);
   const [completed, setCompleted] = useState(0);
@@ -39,7 +42,9 @@ const TopBar: FC<Props> = () => {
     };
   }, [completed]);
 
-  const handleViewResult = () => {};
+  const handleViewResult = () => {
+    navigate("/result");
+  };
 
   return (
     <nav className="relative flex h-[50px] w-full shrink-0 items-center px-5 bg-dark-layer-1 text-dark-gray-7">

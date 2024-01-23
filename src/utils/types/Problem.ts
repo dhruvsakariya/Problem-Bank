@@ -2,9 +2,14 @@ export type Example = {
   id: number;
   inputText: string;
   outputText: string;
+  expectedText: string;
+  stdin: string;
   explanation?: string;
   img?: string;
+  result?: TestCaseResult;
 };
+
+export type TestCaseResult = "Passed" | "Failed";
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
 

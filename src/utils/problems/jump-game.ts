@@ -1,29 +1,4 @@
-// import assert from "assert";
 import type { Problem } from "../types/Problem";
-
-// export const jumpGameHandler = (fn: any) => {
-// 	try {
-// 		const tests = [
-// 			[2, 3, 1, 1, 4],
-// 			[3, 2, 1, 0, 4],
-// 			[2, 0, 0],
-// 			[2, 5, 0, 0],
-// 		];
-// 		const answers = [true, false, true, true];
-// 		for (let i = 0; i < tests.length; i++) {
-// 			const result = fn(tests[i]);
-// 			assert.equal(result, answers[i]);
-// 		}
-// 		return true;
-// 	} catch (error: any) {
-// 		console.log("Error from jumpGameHandler: ", error);
-// 		throw new Error(error);
-// 	}
-// };
-
-const starterCodeJumpGameJS = `function canJump(nums) {
-  // Write your code here
-};`;
 
 export const jumpGame: Problem = {
   id: "jump-game",
@@ -43,6 +18,12 @@ export const jumpGame: Problem = {
       id: 1,
       inputText: `nums = [2,3,1,1,4]`,
       outputText: `true`,
+      expectedText: `true
+`,
+      stdin: `1
+5
+2 3 1 1 4
+`,
       explanation:
         "Jump 1 step from index 0 to 1, then 3 steps to the last index.",
     },
@@ -50,6 +31,12 @@ export const jumpGame: Problem = {
       id: 2,
       inputText: `nums = [3,2,1,0,4]`,
       outputText: `false`,
+      expectedText: `false
+`,
+      stdin: `1
+5
+3 2 1 0 4
+`,
       explanation:
         "You will always arrive at index 3 no matter what. Its maximum jump length is 0, which makes it impossible to reach the last index.",
     },
@@ -57,16 +44,34 @@ export const jumpGame: Problem = {
       id: 3,
       inputText: `nums = [2,5,0,0]`,
       outputText: `true`,
+      expectedText: `true
+`,
+      stdin: `1
+4
+2 5 0 0
+`,
     },
     {
       id: 4,
       inputText: `nums = [1,1,2,2,0,1,1]`,
       outputText: `true`,
+      expectedText: `true
+`,
+      stdin: `1
+7
+1 1 2 2 0 1 1
+`,
     },
     {
       id: 5,
       inputText: `nums = [0,2,3]`,
       outputText: `false`,
+      expectedText: `false
+`,
+      stdin: `1
+3
+0 2 3
+`,
     },
   ],
   constraints: `<li class='mt-2'><code>1 <= nums.length <= 10^4</code></li>

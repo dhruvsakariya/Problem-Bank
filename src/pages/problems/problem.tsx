@@ -22,11 +22,6 @@ import { useDispatch } from "react-redux";
 const Problem = () => {
   const dispatch = useAppDispatch();
 
-  const [loading, setLoading] = useState(true);
-
-  // const [result, setResult] = useState<string>("");
-  // const socketClient = useRef<Client | null>(null);
-  // const wsNextId = useRef<number>(0);
   const { data } = useGetAuthTokenQuery(undefined, {
     // pollingInterval: 180000,
   });
@@ -35,25 +30,12 @@ const Problem = () => {
     if (data) dispatch(setAuthToken(data));
   }, [data]);
 
-  useEffect(() => {
-    (async () => {
-      const problems = (await import("../../utils/problems")).problems;
-
-      const questions = getRandomProblemsArray(problems, 5);
-
-      dispatch(setQuestions(questions));
-      setLoading(false);
-    })();
-  }, []);
-
   return (
     <div>
-      {!loading ? (
-        <SocketProvider>
-          <TopBar />
-          <WorkSpace />
-        </SocketProvider>
-      ) : null}
+      <SocketProvider>
+        <TopBar />
+        <WorkSpace />
+      </SocketProvider>
     </div>
   );
 };

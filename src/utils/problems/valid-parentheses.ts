@@ -1,24 +1,4 @@
-// import assert from "assert";
 import type { Problem } from "../types/Problem";
-
-// export const validParenthesesHandler = (fn: any) => {
-// 	try {
-// 		const tests = ["()", "()[]{}", "(]", "([)]", "{[]}"];
-// 		const answers = [true, true, false, false, true];
-// 		for (let i = 0; i < tests.length; i++) {
-// 			const result = fn(tests[i]);
-// 			assert.deepEqual(result, answers[i]);
-// 		}
-// 		return true;
-// 	} catch (error: any) {
-// 		console.error("Error from validParenthesesHandler: ", error);
-// 		throw new Error(error);
-// 	}
-// };
-
-const starterCodeValidParenthesesJS = `function validParentheses(s) {
-  // Write your code here
-};`;
 
 export const validParentheses: Problem = {
   id: "valid-parentheses",
@@ -32,26 +12,51 @@ export const validParentheses: Problem = {
       id: 1,
       inputText: 's = "()"',
       outputText: "true",
+      expectedText: `true
+`,
+      stdin: `1
+()
+`,
     },
     {
       id: 2,
       inputText: 's = "()[]{}"',
       outputText: "true",
+      expectedText: `true
+`,
+      stdin: `1
+()[]{}
+`,
     },
     {
       id: 3,
       inputText: 's = "(]"',
       outputText: "false",
+      expectedText: `false
+`,
+      stdin: `1
+(]
+`,
     },
     {
       id: 4,
       inputText: 's = "([)]"',
       outputText: "false",
+      expectedText: `false
+`,
+      stdin: `1
+([)]
+`,
     },
     {
       id: 5,
       inputText: 's = "(){}}{"',
       outputText: "false",
+      expectedText: `false
+`,
+      stdin: `1
+(){}}{
+`,
     },
   ],
   constraints: `<li class='mt-2'><code>1 <= s.length <= 10<sup>4</sup></code></li>
