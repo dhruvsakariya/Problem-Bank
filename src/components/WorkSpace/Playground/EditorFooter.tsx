@@ -59,6 +59,14 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ setSuccess }) => {
                 autoClose: 3000,
                 theme: "dark",
               });
+            } else {
+              if (message.body.trim()) {
+                toast.error(message.body, {
+                  position: "bottom-center",
+                  autoClose: 5000,
+                  theme: "dark",
+                });
+              }
             }
           } else if (method === "submit") {
             dispatch(setProblemSubmitted({ submitted: true }));
@@ -72,10 +80,16 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ setSuccess }) => {
               setTimeout(() => {
                 setSuccess(false);
               }, 4000);
+            } else {
+              if (message.body.trim()) {
+                toast.warning("Submitted! Please verify before proceeding to the next question.", {
+                  position: "bottom-center",
+                  autoClose: 3000,
+                  theme: "dark",
+                });
+              }
             }
           }
-
-          console.log("%c✅✅✅ Passed", "color: #00d26a;");
         }
       }
     );
