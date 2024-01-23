@@ -53,7 +53,7 @@ const SocketProvider: React.FC<PropsWithChildren> = ({ children }) => {
       new SockJS(`${process.env.REACT_APP_API_URL}stomp`),
       {
         heartbeat: false,
-        debug: true,
+        debug: false,
       }
     );
 

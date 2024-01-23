@@ -33,12 +33,10 @@ const Result: FC<Props> = () => {
               dispatch(
                 setTestCaseResult({ queIdx: i, caseIdx: j, result: "Passed" })
               );
-              console.log("passed");
             } else {
               dispatch(
                 setTestCaseResult({ queIdx: i, caseIdx: j, result: "Failed" })
               );
-              console.log("failed");
             }
           });
         }

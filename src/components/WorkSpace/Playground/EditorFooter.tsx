@@ -121,7 +121,6 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ setSuccess }) => {
       setMethod("run");
       executeCode();
     } catch (error: any) {
-      // console.log(error.message);
       if (
         error.message.startsWith(
           "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:"
@@ -147,7 +146,6 @@ const EditorFooter: React.FC<EditorFooterProps> = ({ setSuccess }) => {
       setMethod("submit");
       executeCode();
     } catch (error: any) {
-      // console.log(error.message);
       if (
         error.message.startsWith(
           "AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:"
