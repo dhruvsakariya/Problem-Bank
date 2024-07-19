@@ -99,6 +99,7 @@ const Playground: React.FC<PlaygroundProps> = ({
             onChange={onChange}
             extensions={[getLanguageExtension(problemLanguage)]}
             style={{ fontSize: settings.fontSize }}
+            basicSetup={{ tabSize: 4 }}
           />
         </div>
         <div className="w-full px-5 overflow-auto pb-[52px]">
