@@ -18,8 +18,7 @@ export const jumpGame: Problem = {
       id: 1,
       inputText: `nums = [2,3,1,1,4]`,
       outputText: `true`,
-      expectedText: `true
-`,
+      expectedText: `true`,
       stdin: `1
 5
 2 3 1 1 4
@@ -31,8 +30,7 @@ export const jumpGame: Problem = {
       id: 2,
       inputText: `nums = [3,2,1,0,4]`,
       outputText: `false`,
-      expectedText: `false
-`,
+      expectedText: `false`,
       stdin: `1
 5
 3 2 1 0 4
@@ -44,8 +42,7 @@ export const jumpGame: Problem = {
       id: 3,
       inputText: `nums = [2,5,0,0]`,
       outputText: `true`,
-      expectedText: `true
-`,
+      expectedText: `true`,
       stdin: `1
 4
 2 5 0 0
@@ -55,8 +52,7 @@ export const jumpGame: Problem = {
       id: 4,
       inputText: `nums = [1,1,2,2,0,1,1]`,
       outputText: `true`,
-      expectedText: `true
-`,
+      expectedText: `true`,
       stdin: `1
 7
 1 1 2 2 0 1 1
@@ -66,8 +62,7 @@ export const jumpGame: Problem = {
       id: 5,
       inputText: `nums = [0,2,3]`,
       outputText: `false`,
-      expectedText: `false
-`,
+      expectedText: `false`,
       stdin: `1
 3
 0 2 3
@@ -107,7 +102,7 @@ using namespace std;
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
-
+        
     }
 };
 

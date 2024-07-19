@@ -18,8 +18,7 @@ export const twoSum: Problem = {
       id: 1,
       inputText: "nums = [2,7,11,15], target = 9",
       outputText: "[0,1]",
-      expectedText: `0 1
-`,
+      expectedText: `0 1`,
       stdin: `1
 4 2 7 11 15 9
 `,
@@ -30,8 +29,7 @@ export const twoSum: Problem = {
       id: 2,
       inputText: "nums = [3,2,4], target = 6",
       outputText: "[1,2]",
-      expectedText: `1 2
-`,
+      expectedText: `1 2`,
       stdin: `1
 3 3 2 4 6
 `,
@@ -41,8 +39,7 @@ export const twoSum: Problem = {
       id: 3,
       inputText: "nums = [3,3], target = 6",
       outputText: "[0,1]",
-      expectedText: `0 1
-`,
+      expectedText: `0 1`,
       stdin: `1
 2 3 3 6
 `,
@@ -53,8 +50,7 @@ export const twoSum: Problem = {
       id: 4,
       inputText: "nums = [1, 3, 2, 7, 4, 5], target = 12",
       outputText: "[3, 5]",
-      expectedText: `3 5
-`,
+      expectedText: `3 5`,
       stdin: `1
 6 1 3 2 7 4 5 12
 `,
@@ -63,8 +59,7 @@ export const twoSum: Problem = {
       id: 5,
       inputText: "nums = [-10, -1, -18, -19], target = -19",
       outputText: "[1, 2]",
-      expectedText: `1 2
-`,
+      expectedText: `1 2`,
       stdin: `1
 4 -10 -1 -18 -19 -19
 `,
@@ -121,7 +116,7 @@ using namespace std;
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-          
+        
     }
 };
 

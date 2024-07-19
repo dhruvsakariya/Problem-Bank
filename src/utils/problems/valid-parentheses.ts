@@ -12,8 +12,7 @@ export const validParentheses: Problem = {
       id: 1,
       inputText: 's = "()"',
       outputText: "true",
-      expectedText: `true
-`,
+      expectedText: `true`,
       stdin: `1
 ()
 `,
@@ -22,8 +21,7 @@ export const validParentheses: Problem = {
       id: 2,
       inputText: 's = "()[]{}"',
       outputText: "true",
-      expectedText: `true
-`,
+      expectedText: `true`,
       stdin: `1
 ()[]{}
 `,
@@ -32,8 +30,7 @@ export const validParentheses: Problem = {
       id: 3,
       inputText: 's = "(]"',
       outputText: "false",
-      expectedText: `false
-`,
+      expectedText: `false`,
       stdin: `1
 (]
 `,
@@ -42,8 +39,7 @@ export const validParentheses: Problem = {
       id: 4,
       inputText: 's = "([)]"',
       outputText: "false",
-      expectedText: `false
-`,
+      expectedText: `false`,
       stdin: `1
 ([)]
 `,
@@ -52,8 +48,7 @@ export const validParentheses: Problem = {
       id: 5,
       inputText: 's = "(){}}{"',
       outputText: "false",
-      expectedText: `false
-`,
+      expectedText: `false`,
       stdin: `1
 (){}}{
 `,
@@ -91,7 +86,7 @@ using namespace std;
 class Solution {
 public:
     bool isValid(string s) {
-
+        
     }
 };
 

@@ -21,8 +21,7 @@ export const search2DMatrix: Problem = {
   [23,30,34,60]
 ], target = 3`,
       outputText: `true`,
-      expectedText: `true
-`,
+      expectedText: `true`,
       stdin: `1
 3 4
 1 3 5 7
@@ -40,8 +39,7 @@ export const search2DMatrix: Problem = {
         [23,30,34,60]
       ], target = 13`,
       outputText: `false`,
-      expectedText: `false
-`,
+      expectedText: `false`,
       stdin: `1
 3 4
 1 3 5 7
@@ -55,8 +53,7 @@ export const search2DMatrix: Problem = {
       id: 3,
       inputText: `matrix = [[1]], target = 1`,
       outputText: `true`,
-      expectedText: `true
-`,
+      expectedText: `true`,
       stdin: `1
 1 1
 1
@@ -67,8 +64,7 @@ export const search2DMatrix: Problem = {
       id: 4,
       inputText: `matrix = [[1],[3],[5]] target = 3`,
       outputText: `true`,
-      expectedText: `true
-`,
+      expectedText: `true`,
       stdin: `1
 3 1
 1
@@ -81,8 +77,7 @@ export const search2DMatrix: Problem = {
       id: 5,
       inputText: `matrix = [[1, 3]] target = 3`,
       outputText: `true`,
-      expectedText: `true
-`,
+      expectedText: `true`,
       stdin: `1
 1 2
 1 3
@@ -130,7 +125,7 @@ using namespace std;
 class Solution {
 public:
     bool searchMatrix(vector<vector<int>>& matrix, int target) {
-
+        
     }
 };
 
