@@ -78,7 +78,7 @@ export const twoSum: Problem = {
   python3StarterCode: `from typing import List
 
 class Solution:
-  def twoSum(self, nums: List[int], target: int) -> List[int]:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
         
 
 def main():
@@ -116,8 +116,8 @@ using namespace std;
 class Solution {
 public:
     vector<int> twoSum(vector<int>& nums, int target) {
-        
-    }
+
+}
 };
 
 int main() {
